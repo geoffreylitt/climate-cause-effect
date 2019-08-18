@@ -69,7 +69,7 @@
     height: 100%;
     display: grid;
     grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-    grid-template-rows: auto minmax(0, 1fr) 40%;
+    grid-template-rows: auto minmax(0, 1fr) auto;
     grid-template-areas:
       "header header"
       "left-image right-image"
