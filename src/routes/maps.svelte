@@ -1,58 +1,13 @@
 <script>
   import ImageAerial from "../components/ImageAerial.svelte";
   import ImageStreetView from "../components/ImageStreetView.svelte";
+  import causes from "../data/causes";
+  import effects from "../data/effects";
 
   let width = 640;
   let height = 640;
 
-  let causes = [
-    {
-      name: "Exxon",
-      streetViewParams: {
-        location: "30.1051409,-95.4416778",
-        fov: 50,
-        heading: 218,
-        pitch: 10
-      }
-    },
-    {
-      name: "ChevronTexaco",
-      streetViewParams: {
-        location: "37.7605002,-121.9554723",
-        fov: 50,
-        heading: 215,
-        pitch: 10
-      }
-    },
-    {
-      name: "BP",
-      streetViewParams: {
-        location: "51.5076482,-0.1346956",
-        fov: 90,
-        heading: 50,
-        pitch: 10
-      }
-    }
-  ];
-
   let selectedCause = causes[0];
-
-  let effects = [
-    {
-      name: "Amazon rainforest",
-      mapsParams: {
-        center: "-9.6077223,-64.6272964",
-        zoom: 10
-      }
-    },
-    {
-      name: "Antarctica",
-      mapsParams: {
-        center: "-65.5882219,99.0944537",
-        zoom: 10
-      }
-    }
-  ];
   let selectedEffect = effects[0];
 </script>
 
@@ -76,12 +31,10 @@
     </select>
     <div style="width: 640px; height: 480px">
       <ImageStreetView
-        {width}
-        {height}
-        location={selectedCause.streetViewParams.location}
-        fov={selectedCause.streetViewParams.fov}
-        heading={selectedCause.streetViewParams.heading}
-        pitch={selectedCause.streetViewParams.pitch} />
+        location={selectedCause.location}
+        fov={selectedCause.fov}
+        heading={selectedCause.heading}
+        pitch={selectedCause.pitch} />
     </div>
   </div>
 </div>
@@ -96,10 +49,8 @@
     </select>
     <div style="width: 640px; height: 480px;">
       <ImageAerial
-        {width}
-        {height}
-        center={selectedEffect.mapsParams.center}
-        zoom={selectedEffect.mapsParams.zoom} />
+        center={selectedEffect.location}
+        zoom={selectedEffect.zoom} />
     </div>
   </div>
 </div>
