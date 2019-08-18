@@ -42,8 +42,14 @@
       name: "Amazon rainforest",
       mapsParams: {
         center: "-9.6077223,-64.6272964",
-        zoom: 10,
-        maptype: "hybrid"
+        zoom: 10
+      }
+    },
+    {
+      name: "Antarctica",
+      mapsParams: {
+        center: "-65.5882219,99.0944537",
+        zoom: 10
       }
     }
   ];
