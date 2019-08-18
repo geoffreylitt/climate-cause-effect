@@ -6,8 +6,8 @@
   export let heading;
   export let pitch;
 
-  export let width;
-  export let height;
+  let width;
+  let height;
 
   let filter = "kodak";
 
@@ -124,7 +124,7 @@
 
   function makeStreetViewUrl(location, fov, heading, pitch) {
     let params = {
-      size: `${width}x${height}`,
+      size: `640x640`,
       location,
       fov,
       heading,
@@ -328,4 +328,15 @@
     <option value={matrix}>{matrix.name}</option>
   {/each}
 </select>
-<canvas bind:this={canvas} {width} {height} />
+<div class="canvas-container" bind:clientWidth={width} bind:clientHeight={height}>
+  <canvas bind:this={canvas}  
+  {width} {height} />
+</div>
+
+<style>
+  .canvas-container {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+  }
+</style>

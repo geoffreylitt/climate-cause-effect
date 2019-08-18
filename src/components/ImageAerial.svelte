@@ -4,8 +4,8 @@
   export let center;
   export let zoom;
 
-  export let width;
-  export let height;
+  let width;
+  let height;
 
   let canvas;
 
@@ -15,7 +15,7 @@
 
   function makeMapUrl(effect) {
     let params = {
-      size: `${width}x${height}`,
+      size: `640x640`,
       center,
       zoom,
       maptype: "satellite",
@@ -100,4 +100,15 @@
   }
 </script>
 
-<canvas bind:this={canvas} {width} {height} />
+<div class="canvas-container" bind:clientWidth={width} bind:clientHeight={height}>
+  <canvas bind:this={canvas}  
+  {width} {height} />
+</div>
+
+<style>
+  .canvas-container {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+  }
+</style>
