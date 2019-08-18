@@ -2,8 +2,44 @@
   import Logo from "../components/Logo.svelte";
   import ImageAerial from "../components/ImageAerial.svelte";
   import ImageStreetView from "../components/ImageStreetView.svelte";
+  import causes from "../data/causes";
+  import effects from "../data/effects";
+  import { onMount } from "svelte";
 
   export let segment;
+
+  let cause = causes[0];
+  let effect = effects[0];
+
+  function getRandomFromArray(array) {
+    return array[Math.floor(Math.random() * array.length)];
+  }
+
+  function refreshCauseAndEffect() {
+    console.log("hey");
+
+    let newCause = cause;
+    let newEffect = effect;
+
+    while (newCause === cause) {
+      newCause = getRandomFromArray(causes);
+    }
+
+    while (newEffect === effect) {
+      newEffect = getRandomFromArray(effects);
+    }
+
+    cause = newCause;
+    effect = newEffect;
+  }
+
+  onMount(() => {
+    const interval = setInterval(refreshCauseAndEffect, 10000);
+
+    return () => {
+      clearInterval(interval);
+    };
+  });
 </script>
 
 <style>
@@ -49,14 +85,17 @@
   </header>
   <div class="left-image">
     <ImageStreetView
-      location="37.7605002,-121.9554723"
+      location={cause.location}
       fov={50}
       heading={215}
       pitch={10} />
   </div>
   <div class="right-image">
-    <ImageAerial center="-9.6077223,-64.6272964" zoom={10} />
+    <ImageAerial center={effect.location} zoom={10} />
   </div>
   <div class="left-content" />
   <div class="right-content" />
+  <div style="margin: 20px;">
+    <button on:click={refreshCauseAndEffect}>Refresh</button>
+  </div>
 </div>
