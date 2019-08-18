@@ -11,14 +11,15 @@
 
   $: url = makeMapUrl(center, zoom);
 
-  $: canvas && renderImgToCanvas(url)
+  $: canvas && renderImgToCanvas(url);
 
   function makeMapUrl(effect) {
     let params = {
       size: `${width}x${height}`,
       center,
       zoom,
-      maptype: 'hybrid'
+      maptype: "hybrid",
+      scale: 2
     };
 
     let queryString = Object.keys(params)
@@ -28,20 +29,30 @@
     return `/maps/api/staticmap?${queryString}`;
   }
 
-  function renderImgToCanvas (imgUrl) {
+  function renderImgToCanvas(imgUrl) {
     let regl = reglLib(canvas);
     let image = new Image();
     image.crossOrigin = "anonymous";
     image.src = imgUrl;
     image.onload = function() {
       // init regl once component has mounted
-      regl({
+      let drawImage = regl({
         frag: `
         precision mediump float;
         uniform sampler2D texture;
         varying vec2 uv;
+        uniform float time;
+
         void main () {
-          gl_FragColor = texture2D(texture, uv);
+          // flip in the x-axis
+          vec2 flipped = vec2(1.0 - uv.x, uv.y);
+
+         float timeDelta = time / 200.0;
+
+          // zoom in so we only see 0.25~0.75 in both axes
+          vec2 zoomed = vec2(flipped.x * 0.5 + 0.25 + timeDelta, flipped.y * 0.5 + 0.25);
+          
+          gl_FragColor = texture2D(texture, zoomed);
         }`,
 
         vert: `
@@ -58,13 +69,27 @@
         },
 
         uniforms: {
-          texture: regl.texture(image)
+          texture: regl.texture(image),
+          time: regl.prop("time")
         },
 
         count: 3
-      })();
+      });
+
+      regl.frame(({ time }) => {
+        // clear contents of the drawing buffer
+        regl.clear({
+          color: [0, 0, 0, 0],
+          depth: 1
+        });
+
+        // draw a triangle using the command defined above
+        drawImage({
+          time: time
+        });
+      });
     };
-  };
+  }
 </script>
 
 <canvas bind:this={canvas} {width} {height} />
