@@ -40,19 +40,16 @@
         frag: `
         precision mediump float;
         uniform sampler2D texture;
-        varying vec2 uv;
+        varying vec2 vUv;
         uniform float time;
 
         void main () {
-          // flip in the x-axis
-          vec2 flipped = vec2(1.0 - uv.x, uv.y);
-
           // define the animation speed in each direction
          float xDelta = mod(time / 100.0, 0.5);
          float yDelta = xDelta / 3.0; // move faster in x than y
 
-         float xPos = flipped.x * 0.5 + xDelta;
-         float yPos = flipped.y * 0.5 + 0.25 + yDelta;
+         float xPos = vUv.x * 0.5 + xDelta;
+         float yPos = vUv.y * 0.5 + 0.25 + yDelta;
 
           // zoom in 2x, and animate pan based on time 
           vec2 zoomed = vec2(xPos, yPos);
@@ -63,14 +60,22 @@
         vert: `
         precision mediump float;
         attribute vec2 position;
-        varying vec2 uv;
+        attribute vec2 uv;
+        varying vec2 vUv;
         void main () {
-          uv = position;
-          gl_Position = vec4(1.0 - 2.0 * position, 0, 1);
+          vUv = uv;
+          gl_Position = vec4(2.0 * position - 1.0, 0, 1);
         }`,
 
         attributes: {
-          position: [-2, 0, 0, -2, 2, 2]
+          position: [
+            [[0, 0], [1, 1], [0, 1]],
+            [[0, 0], [1, 1], [1, 0]]
+          ],
+          uv: [
+            [[0, 0.96], [0.96, 0], [0, 0]],
+            [[0, 0.96], [0.96, 0], [0.96, 0.96]]
+          ]
         },
 
         uniforms: {
@@ -81,7 +86,7 @@
           time: regl.prop("time")
         },
 
-        count: 3
+        count: 6
       });
 
       regl.frame(({ time }) => {

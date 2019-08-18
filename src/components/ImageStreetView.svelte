@@ -9,8 +9,6 @@
   let width;
   let height;
 
-  let filter = "kodak";
-
   let canvas;
 
   $: url = makeStreetViewUrl(location, fov, heading, pitch);
@@ -48,6 +46,8 @@
           #define PI 3.14159265
 
           precision mediump float;
+          varying vec2 vUv;
+          varying vec2 vPosition;
           uniform float time;
           uniform vec2 dimensions;
           uniform sampler2D texture;
@@ -83,10 +83,8 @@
           }
 
           void main(){
-            vec2 pre_uv = gl_FragCoord.xy / dimensions;
-            // flip image in x and y
-            vec2 uv = vec2(pre_uv.x, 1.0 - pre_uv.y);
-            vec2 uvn = uv;
+            vec2 uv = vUv;
+            vec2 uvn = vUv;
             vec3 col = vec3( 0.0 );
 
             // tape wave
@@ -131,14 +129,24 @@
         vert: `
         precision mediump float;
         attribute vec2 position;
-        varying vec2 uv;
+        attribute vec2 uv;
+        varying vec2 vUv;
+        varying vec2 vPosition;
         void main () {
-          uv = position;
-          gl_Position = vec4(1.0 - 2.0 * position, 0, 1);
+          vUv = uv;
+          vPosition = position;
+          gl_Position = vec4(2.0 * position - 1.0, 0, 1);
         }`,
 
         attributes: {
-          position: [[[0, 0], [1, 1], [0, 1]], [[0, 0], [1, 1], [1, 0]]]
+          position: [
+            [[0, 0], [1, 1], [0, 1]],
+            [[0, 0], [1, 1], [1, 0]]
+          ],
+          uv: [
+            [[0, 0.96], [0.96, 0], [0, 0]],
+            [[0, 0.96], [0.96, 0], [0.96, 0.96]]
+          ]
         },
 
         uniforms: {
