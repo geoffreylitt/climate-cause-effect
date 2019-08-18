@@ -18,3 +18,5 @@ Carbon Majors company data
 
 * style Google copyright ourselves
 * add timestamp to the surveillance footage
+* add multiple camera angles
+* live stock ticker?
