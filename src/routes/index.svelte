@@ -87,6 +87,7 @@
   <div class="left-image">
     <ImageStreetView
       location={cause.location}
+      pano={cause.pano}
       fov={50}
       heading={215}
       pitch={10} />

@@ -9,14 +9,14 @@ let base = new Airtable({ apiKey: process.env.AIRTABLE_API_KEY }).base('appwhbSq
 let loadData = function (airtableName, localFileName) {
   let results = [];
   base(airtableName).select({
-    // Selecting the first 3 records in Grid view:
-    maxRecords: 3,
     view: "Grid view"
   }).eachPage(function page(records, fetchNextPage) {
     // This function (`page`) will get called for each page of records.
 
     records.forEach(function (record) {
-      results.push(record.fields);
+      if (record.fields.hidden !== true) {
+        results.push(record.fields);
+      }
     });
 
     // To fetch the next page of records, call `fetchNextPage`.

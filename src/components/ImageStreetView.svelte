@@ -2,6 +2,7 @@
   import reglLib from "regl";
 
   export let location;
+  export let pano;
   export let fov;
   export let heading;
   export let pitch;
@@ -11,18 +12,23 @@
 
   let canvas;
 
-  $: url = makeStreetViewUrl(location, fov, heading, pitch);
+  $: url = makeStreetViewUrl(location, pano, fov, heading, pitch);
 
   $: canvas && renderImgToCanvas(url);
 
-  function makeStreetViewUrl(location, fov, heading, pitch) {
+  function makeStreetViewUrl(location, pano, fov, heading, pitch) {
     let params = {
       size: `640x640`,
-      location,
       fov,
       heading,
       pitch
     };
+
+    if (pano !== undefined) {
+      params = { pano, ...params };
+    } else {
+      params = { location, ...params };
+    }
 
     let queryString = Object.keys(params)
       .map(key => key + "=" + params[key])
@@ -146,10 +152,7 @@
         }`,
 
         attributes: {
-          position: [
-            [[0, 0], [1, 1], [0, 1]],
-            [[0, 0], [1, 1], [1, 0]]
-          ],
+          position: [[[0, 0], [1, 1], [0, 1]], [[0, 0], [1, 1], [1, 0]]],
           uv: [
             [[0, 0.96], [0.96, 0], [0, 0]],
             [[0, 0.96], [0.96, 0], [0.96, 0.96]]
@@ -176,7 +179,7 @@
         // draw a triangle using the command defined above
         drawImage({
           time: time / 3.0,
-          ratio: 1.0 * width / height
+          ratio: (1.0 * width) / height
         });
       });
     };
