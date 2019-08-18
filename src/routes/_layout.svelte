@@ -2,11 +2,20 @@
   export let segment;
 </script>
 
-<slot {segment}></slot>
+<svelte:head>
+	<style>
+		:root {
+			--primary: #ffffff;
+			--secondary: #af8a67;
+			--image-background: #888888;
+			--background: #000000;
+		}
 
-<style>
-    :global(body) {
-        background: black;
-        color: white;
-    }
-</style>
+		body {
+			background: var(--background); 
+			color: var(--primary);
+		}
+	</style>
+</svelte:head>
+
+<slot {segment}></slot>

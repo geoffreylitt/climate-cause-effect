@@ -183,17 +183,27 @@
   }
 </script>
 
-<style>
-  .canvas-container {
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-  }
-</style>
-
 <div
   class="canvas-container"
   bind:clientWidth={width}
   bind:clientHeight={height}>
   <canvas bind:this={canvas} {width} {height} />
+  <div class="copyright">© Google</div>
 </div>
+
+<style>
+  .canvas-container {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .copyright {
+    font-size: 0.75rem;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    padding: 0.5rem;
+  }
+</style>

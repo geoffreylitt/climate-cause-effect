@@ -2,6 +2,9 @@
   import Logo from "../components/Logo.svelte";
   import ImageAerial from "../components/ImageAerial.svelte";
   import ImageStreetView from "../components/ImageStreetView.svelte";
+  import PanelCause from "../components/PanelCause.svelte";
+  import PanelEffect from "../components/PanelEffect.svelte";
+
   import causes from "../data/causes";
   import effects from "../data/effects";
   import { onMount } from "svelte";
@@ -16,8 +19,6 @@
   }
 
   function refreshCauseAndEffect() {
-    console.log("hey");
-
     let newCause = cause;
     let newEffect = effect;
 
@@ -93,9 +94,10 @@
   <div class="right-image">
     <ImageAerial center={effect.location} zoom={10} />
   </div>
-  <div class="left-content" />
-  <div class="right-content" />
-  <div style="margin: 20px;">
-    <button on:click={refreshCauseAndEffect}>Refresh</button>
+  <div class="left-content">
+    <PanelCause data={cause} />
+  </div> 
+  <div class="right-content">
+    <PanelEffect data={effect} />
   </div>
 </div>

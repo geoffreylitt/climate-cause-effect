@@ -19,7 +19,7 @@
 	}
 
 	.logo {
-		height: 3rem;
+		height: 4rem;
 		display: flex;
 		justify-content: space-between;
 	}
