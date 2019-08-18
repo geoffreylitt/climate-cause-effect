@@ -3,6 +3,7 @@
 
   export let center;
   export let zoom;
+  export let direction = 30;
 
   let width;
   let height;
@@ -43,6 +44,7 @@
         varying vec2 vUv;
         uniform float time;
         uniform float ratio;
+        uniform float direction;
 
         vec2 resize(vec2 uv) {
           float x = uv.x * min(ratio, 1.0);
@@ -51,17 +53,17 @@
         }
 
         void main () {
+
+          float zoom = 4.0 / 3.0;
+          float speed = 1.0 / 100.0;
+
           // define the animation speed in each direction
-         float xDelta = mod(time / 100.0, 0.5);
-         float yDelta = xDelta / 3.0; // move faster in x than y
+          float offset = time * speed;
+          vec2 vector = vec2(cos(direction), sin(direction));
+          vec2 delta = offset * vector;
+          vec2 uv = mod(vUv / zoom + delta, 0.96);
 
-         float xPos = vUv.x * 0.5 + xDelta;
-         float yPos = vUv.y * 0.5 + 0.25 + yDelta;
-
-          // zoom in 2x, and animate pan based on time 
-          vec2 zoomed = vec2(xPos, yPos);
-
-          gl_FragColor = texture2D(texture, resize(zoomed));
+          gl_FragColor = texture2D(texture, resize(uv));
         }`,
 
         vert: `
@@ -91,7 +93,8 @@
             mag: "linear" // smooth scrolling
           }),
           time: regl.prop("time"),
-          ratio: regl.prop("ratio")
+          ratio: regl.prop("ratio"),
+          direction: regl.prop("direction")
         },
 
         count: 6
@@ -107,7 +110,8 @@
         // draw a triangle using the command defined above
         drawImage({
           time: time,
-          ratio: 1.0 * width / height
+          ratio: width / height,
+          direction: direction * Math.PI / 180
         });
       });
     };
