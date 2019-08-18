@@ -302,26 +302,6 @@
           time: regl.prop("time"),
           texture: regl.texture(image),
           dimensions: [image.width, image.height]
-          // "m[0]": colorMatrix[0],
-          // "m[1]": colorMatrix[1],
-          // "m[2]": colorMatrix[2],
-          // "m[3]": colorMatrix[3],
-          // "m[4]": colorMatrix[4] / 255.0,
-          // "m[5]": colorMatrix[5],
-          // "m[6]": colorMatrix[6],
-          // "m[7]": colorMatrix[7],
-          // "m[8]": colorMatrix[8],
-          // "m[9]": colorMatrix[9] / 255.0,
-          // "m[10]": colorMatrix[10],
-          // "m[11]": colorMatrix[11],
-          // "m[12]": colorMatrix[12],
-          // "m[13]": colorMatrix[13],
-          // "m[14]": colorMatrix[14] / 255.0,
-          // "m[15]": colorMatrix[15],
-          // "m[16]": colorMatrix[16],
-          // "m[17]": colorMatrix[17],
-          // "m[18]": colorMatrix[18],
-          // "m[19]": colorMatrix[19] / 255.0
         },
 
         count: 6

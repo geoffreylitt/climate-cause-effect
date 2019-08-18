@@ -47,8 +47,10 @@
           // flip in the x-axis
           vec2 flipped = vec2(1.0 - uv.x, uv.y);
 
+         float timeDelta = time / 200.0;
+
           // zoom in so we only see 0.25~0.75 in both axes
-          vec2 zoomed = vec2(flipped.x * 0.5 + 0.25 + (time / 200.0), flipped.y * 0.5 + 0.25);
+          vec2 zoomed = vec2(flipped.x * 0.5 + 0.25 + timeDelta, flipped.y * 0.5 + 0.25);
           
           gl_FragColor = texture2D(texture, zoomed);
         }`,
