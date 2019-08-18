@@ -11,6 +11,10 @@ Carbon Majors company data
 
 
 [Google Maps Street View Static API](https://developers.google.com/maps/documentation/streetview/intro)
-# Todos
 
 [Google Cloud project](https://console.cloud.google.com/home/dashboard?folder=&organizationId=&project=climate-microsite)
+
+# Todos
+
+* style Google copyright ourselves
+* add timestamp to the surveillance footage

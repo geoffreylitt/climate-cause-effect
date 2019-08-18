@@ -181,24 +181,108 @@
         // `,
 
         // color transform frag shader
+        // frag: `
+        // precision mediump float;
+
+        // // our texture
+        // uniform sampler2D texture;
+        // uniform float m[20]; // color transform matrix
+        // uniform float time; // current time
+
+        // // the texCoords passed in from the vertex shader.
+        // varying vec2 uv;
+
+        // void main() {
+        //   vec4 c = texture2D(texture, uv);
+        //   gl_FragColor.r = m[0] * c.r + m[1] * c.g + m[2] * c.b + m[4] + (100.0 * (time / 1000.0));
+        //   gl_FragColor.g = m[5] * c.r + m[6] * c.g + m[7] * c.b + m[9];
+        //   gl_FragColor.b = m[10] * c.r + m[11] * c.g + m[12] * c.b + m[14];
+        //   gl_FragColor.a = c.a;
+        // }
+        // `,
+
         frag: `
-        precision mediump float;
+          #define PI 3.14159265
 
-        // our texture
-        uniform sampler2D texture;
-        uniform float m[20]; // color transform matrix
-        uniform float time; // current time
+          precision mediump float;
+          uniform float time;
+          uniform vec2 dimensions;
+          uniform sampler2D texture;
 
-        // the texCoords passed in from the vertex shader.
-        varying vec2 uv;
+          vec3 tex2D( sampler2D _tex, vec2 _p ){
+            vec3 col = texture2D( _tex, _p ).xyz;
+            if ( 0.5 < abs( _p.x - 0.5 ) ) {
+              col = vec3( 0.1 );
+            }
+            return col;
+          }
 
-        void main() {
-          vec4 c = texture2D(texture, uv);
-          gl_FragColor.r = m[0] * c.r + m[1] * c.g + m[2] * c.b + m[4] + (100.0 * (time / 1000.0));
-          gl_FragColor.g = m[5] * c.r + m[6] * c.g + m[7] * c.b + m[9];
-          gl_FragColor.b = m[10] * c.r + m[11] * c.g + m[12] * c.b + m[14];
-          gl_FragColor.a = c.a;
-        }
+          float hash( vec2 _v ){
+            return fract( sin( dot( _v, vec2( 89.44, 19.36 ) ) ) * 22189.22 );
+          }
+
+          float iHash( vec2 _v, vec2 _r ){
+            float h00 = hash( vec2( floor( _v * _r + vec2( 0.0, 0.0 ) ) / _r ) );
+            float h10 = hash( vec2( floor( _v * _r + vec2( 1.0, 0.0 ) ) / _r ) );
+            float h01 = hash( vec2( floor( _v * _r + vec2( 0.0, 1.0 ) ) / _r ) );
+            float h11 = hash( vec2( floor( _v * _r + vec2( 1.0, 1.0 ) ) / _r ) );
+            vec2 ip = vec2( smoothstep( vec2( 0.0, 0.0 ), vec2( 1.0, 1.0 ), mod( _v*_r, 1. ) ) );
+            return ( h00 * ( 1. - ip.x ) + h10 * ip.x ) * ( 1. - ip.y ) + ( h01 * ( 1. - ip.x ) + h11 * ip.x ) * ip.y;
+          }
+
+          float noise( vec2 _v ){
+            float sum = 0.;
+            for( int i=1; i<9; i++ )
+            {
+              sum += iHash( _v + vec2( i ), vec2( 2. * pow( 2., float( i ) ) ) ) / pow( 2., float( i ) );
+            }
+            return sum;
+          }
+
+          void main(){
+            vec2 pre_uv = gl_FragCoord.xy / dimensions;
+            // flip image in x and y
+            vec2 uv = vec2(pre_uv.x, 1.0 - pre_uv.y);
+            vec2 uvn = uv;
+            vec3 col = vec3( 0.0 );
+
+            // tape wave
+            uvn.x += ( noise( vec2( uvn.y, time ) ) - 0.5 )* 0.005;
+            uvn.x += ( noise( vec2( uvn.y * 100.0, time * 10.0 ) ) - 0.5 ) * 0.01;
+
+            // tape crease
+            float tcPhase = clamp( ( sin( uvn.y * 8.0 - time * PI * 1.2 ) - 0.92 ) * noise( vec2( time ) ), 0.0, 0.01 ) * 10.0;
+            float tcNoise = max( noise( vec2( uvn.y * 100.0, time * 10.0 ) ) - 0.5, 0.0 );
+            uvn.x = uvn.x - tcNoise * tcPhase;
+
+            // switching noise
+            float snPhase = smoothstep( 0.03, 0.0, uvn.y );
+            uvn.y += snPhase * 0.3;
+            uvn.x += snPhase * ( ( noise( vec2( uv.y * 100.0, time * 10.0 ) ) - 0.5 ) * 0.2 );
+              
+            col = tex2D( texture, uvn );
+            col *= 1.0 - tcPhase;
+            col = mix(
+              col,
+              col.yzx,
+              snPhase
+            );
+
+            // bloom
+            for( float x = -4.0; x < 2.5; x += 1.0 ){
+              col.xyz += vec3(
+                tex2D( texture, uvn + vec2( x - 0.0, 0.0 ) * 7E-3 ).x,
+                tex2D( texture, uvn + vec2( x - 2.0, 0.0 ) * 7E-3 ).y,
+                tex2D( texture, uvn + vec2( x - 4.0, 0.0 ) * 7E-3 ).z
+              ) * 0.1;
+            }
+            col *= 0.6;
+
+            // ac beat
+            col *= 1.0 + clamp( noise( vec2( 0.0, uv.y + time * 0.2 ) ) * 0.6 - 0.25, 0.0, 0.1 );
+
+            gl_FragColor = vec4( col, 1.0 );
+          }
         `,
 
         vert: `
@@ -211,35 +295,36 @@
         }`,
 
         attributes: {
-          position: [-2, 0, 0, -2, 2, 2]
+          position: [[[0, 0], [1, 1], [0, 1]], [[0, 0], [1, 1], [1, 0]]]
         },
 
         uniforms: {
           time: regl.prop("time"),
           texture: regl.texture(image),
-          "m[0]": colorMatrix[0],
-          "m[1]": colorMatrix[1],
-          "m[2]": colorMatrix[2],
-          "m[3]": colorMatrix[3],
-          "m[4]": colorMatrix[4] / 255.0,
-          "m[5]": colorMatrix[5],
-          "m[6]": colorMatrix[6],
-          "m[7]": colorMatrix[7],
-          "m[8]": colorMatrix[8],
-          "m[9]": colorMatrix[9] / 255.0,
-          "m[10]": colorMatrix[10],
-          "m[11]": colorMatrix[11],
-          "m[12]": colorMatrix[12],
-          "m[13]": colorMatrix[13],
-          "m[14]": colorMatrix[14] / 255.0,
-          "m[15]": colorMatrix[15],
-          "m[16]": colorMatrix[16],
-          "m[17]": colorMatrix[17],
-          "m[18]": colorMatrix[18],
-          "m[19]": colorMatrix[19] / 255.0
+          dimensions: [image.width, image.height]
+          // "m[0]": colorMatrix[0],
+          // "m[1]": colorMatrix[1],
+          // "m[2]": colorMatrix[2],
+          // "m[3]": colorMatrix[3],
+          // "m[4]": colorMatrix[4] / 255.0,
+          // "m[5]": colorMatrix[5],
+          // "m[6]": colorMatrix[6],
+          // "m[7]": colorMatrix[7],
+          // "m[8]": colorMatrix[8],
+          // "m[9]": colorMatrix[9] / 255.0,
+          // "m[10]": colorMatrix[10],
+          // "m[11]": colorMatrix[11],
+          // "m[12]": colorMatrix[12],
+          // "m[13]": colorMatrix[13],
+          // "m[14]": colorMatrix[14] / 255.0,
+          // "m[15]": colorMatrix[15],
+          // "m[16]": colorMatrix[16],
+          // "m[17]": colorMatrix[17],
+          // "m[18]": colorMatrix[18],
+          // "m[19]": colorMatrix[19] / 255.0
         },
 
-        count: 3
+        count: 6
       });
 
       regl.frame(({ time }) => {
@@ -251,7 +336,7 @@
 
         // draw a triangle using the command defined above
         drawImage({
-          time: time
+          time: time / 3.0
         });
       });
     };
