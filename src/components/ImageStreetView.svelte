@@ -49,11 +49,18 @@
           varying vec2 vUv;
           varying vec2 vPosition;
           uniform float time;
+          uniform float ratio;
           uniform vec2 dimensions;
           uniform sampler2D texture;
 
+          vec2 resize(vec2 uv) {
+            float x = uv.x * min(ratio, 1.0);
+            float y = uv.y / max(ratio, 1.0);
+            return vec2(0.5 - min(ratio, 1.0) / 2.0 + x, 0.5 - (1.0 / max(ratio, 1.0)) / 2.0 + y);
+          }
+
           vec3 tex2D( sampler2D _tex, vec2 _p ){
-            vec3 col = texture2D( _tex, _p ).xyz;
+            vec3 col = texture2D( _tex, resize(_p) ).xyz;
             if ( 0.5 < abs( _p.x - 0.5 ) ) {
               col = vec3( 0.1 );
             }
@@ -151,6 +158,7 @@
 
         uniforms: {
           time: regl.prop("time"),
+          ratio: regl.prop("ratio"),
           texture: regl.texture(image),
           dimensions: [image.width, image.height]
         },
@@ -167,7 +175,8 @@
 
         // draw a triangle using the command defined above
         drawImage({
-          time: time / 3.0
+          time: time / 3.0,
+          ratio: 1.0 * width / height
         });
       });
     };

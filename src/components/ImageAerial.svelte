@@ -42,19 +42,26 @@
         uniform sampler2D texture;
         varying vec2 vUv;
         uniform float time;
+        uniform float ratio;
+
+        vec2 resize(vec2 uv) {
+          float x = uv.x * min(ratio, 1.0);
+          float y = uv.y / max(ratio, 1.0);
+          return vec2(0.5 - min(ratio, 1.0) / 2.0 + x, 0.5 - (1.0 / max(ratio, 1.0)) / 2.0 + y);
+        }
 
         void main () {
           // define the animation speed in each direction
          float xDelta = mod(time / 100.0, 0.5);
          float yDelta = xDelta / 3.0; // move faster in x than y
 
-         float xPos = vUv.x * 0.5 + xDelta;
-         float yPos = vUv.y * 0.5 + 0.25 + yDelta;
+         // float xPos = vUv.x * 0.5 + xDelta;
+         // float yPos = vUv.y * 0.5 + 0.25 + yDelta;
 
           // zoom in 2x, and animate pan based on time 
-          vec2 zoomed = vec2(xPos, yPos);
+          // vec2 zoomed = vec2(xPos, yPos);
 
-          gl_FragColor = texture2D(texture, zoomed);
+          gl_FragColor = texture2D(texture, resize(vUv));
         }`,
 
         vert: `
@@ -83,7 +90,8 @@
             data: image,
             mag: "linear" // smooth scrolling
           }),
-          time: regl.prop("time")
+          time: regl.prop("time"),
+          ratio: regl.prop("ratio")
         },
 
         count: 6
@@ -98,7 +106,8 @@
 
         // draw a triangle using the command defined above
         drawImage({
-          time: time
+          time: time,
+          ratio: 1.0 * width / height
         });
       });
     };
