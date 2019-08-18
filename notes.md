@@ -17,7 +17,19 @@ Carbon Majors company data
 
 # Todos
 
-* style Google copyright ourselves
-* add timestamp to the surveillance footage
-* add multiple camera angles
-* live stock ticker?
+[x] style Google copyright ourselves
+
+## main dish
+
+[] paragraphs of effect content
+[] offset timings
+[] figure out controls / picker
+[] navbar 
+[] about page
+[] deploy!
+
+## Cilantro
+[] add timestamp to the surveillance footage
+[] add multiple camera angles
+[] live stock ticker?
+[] asterisks for data sources
