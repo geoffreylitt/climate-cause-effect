@@ -1,11 +1,12 @@
 <script>
+  import Logo from '../components/Logo.svelte'
+
   export let segment;
 </script>
 
 <div class="container">
   <header>
-    <div class="header-cause">Cause</div>
-    <div class="header-effect">Effect</div>
+    <Logo />
   </header>
   <div class="left-image">
   
@@ -22,15 +23,7 @@
 
 <style>
   header {
-    text-transform: uppercase;
-    font-size: 2rem;
     grid-area: header;
-    display: flex;
-    justify-content: space-between;
-  }
-
-  .header-effect {
-    transform: scale(-1, 1);
   }
 
   .left-image, .right-image {
@@ -58,8 +51,8 @@
       "header header"
       "left-image right-image"
       "left-content right-content";
-    grid-column-gap: 0.2rem;
-    padding-left: 0.2rem;
-    padding-right: 0.2rem;
+    grid-column-gap: 0.4rem;
+    padding-left: 0.4rem;
+    padding-right: 0.4rem;
   }
 </style>
