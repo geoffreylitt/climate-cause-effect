@@ -55,13 +55,13 @@
          float xDelta = mod(time / 100.0, 0.5);
          float yDelta = xDelta / 3.0; // move faster in x than y
 
-         // float xPos = vUv.x * 0.5 + xDelta;
-         // float yPos = vUv.y * 0.5 + 0.25 + yDelta;
+         float xPos = vUv.x * 0.5 + xDelta;
+         float yPos = vUv.y * 0.5 + 0.25 + yDelta;
 
           // zoom in 2x, and animate pan based on time 
-          // vec2 zoomed = vec2(xPos, yPos);
+          vec2 zoomed = vec2(xPos, yPos);
 
-          gl_FragColor = texture2D(texture, resize(vUv));
+          gl_FragColor = texture2D(texture, resize(zoomed));
         }`,
 
         vert: `
