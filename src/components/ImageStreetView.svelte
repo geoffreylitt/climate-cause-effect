@@ -146,7 +146,7 @@
 
     image.onload = function() {
       // init regl once component has mounted
-      regl({
+      let drawImage = regl({
         // original frag shader
         // frag: `
         // precision mediump float;
@@ -187,13 +187,14 @@
         // our texture
         uniform sampler2D texture;
         uniform float m[20]; // color transform matrix
+        uniform float time; // current time
 
         // the texCoords passed in from the vertex shader.
         varying vec2 uv;
 
         void main() {
           vec4 c = texture2D(texture, uv);
-          gl_FragColor.r = m[0] * c.r + m[1] * c.g + m[2] * c.b + m[4];
+          gl_FragColor.r = m[0] * c.r + m[1] * c.g + m[2] * c.b + m[4] + (100.0 * (time / 1000.0));
           gl_FragColor.g = m[5] * c.r + m[6] * c.g + m[7] * c.b + m[9];
           gl_FragColor.b = m[10] * c.r + m[11] * c.g + m[12] * c.b + m[14];
           gl_FragColor.a = c.a;
@@ -214,6 +215,7 @@
         },
 
         uniforms: {
+          time: regl.prop("time"),
           texture: regl.texture(image),
           "m[0]": colorMatrix[0],
           "m[1]": colorMatrix[1],
@@ -238,7 +240,20 @@
         },
 
         count: 3
-      })();
+      });
+
+      regl.frame(({ time }) => {
+        // clear contents of the drawing buffer
+        regl.clear({
+          color: [0, 0, 0, 0],
+          depth: 1
+        });
+
+        // draw a triangle using the command defined above
+        drawImage({
+          time: time
+        });
+      });
     };
   }
 </script>
