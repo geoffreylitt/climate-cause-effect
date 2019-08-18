@@ -18,7 +18,7 @@
       size: `${width}x${height}`,
       center,
       zoom,
-      maptype: "hybrid",
+      maptype: "satellite",
       scale: 2
     };
 
@@ -47,11 +47,16 @@
           // flip in the x-axis
           vec2 flipped = vec2(1.0 - uv.x, uv.y);
 
-         float timeDelta = time / 200.0;
+          // define the animation speed in each direction
+         float xDelta = mod(time / 100.0, 0.5);
+         float yDelta = xDelta / 3.0; // move faster in x than y
 
-          // zoom in so we only see 0.25~0.75 in both axes
-          vec2 zoomed = vec2(flipped.x * 0.5 + 0.25 + timeDelta, flipped.y * 0.5 + 0.25);
-          
+         float xPos = flipped.x * 0.5 + xDelta;
+         float yPos = flipped.y * 0.5 + 0.25 + yDelta;
+
+          // zoom in 2x, and animate pan based on time 
+          vec2 zoomed = vec2(xPos, yPos);
+
           gl_FragColor = texture2D(texture, zoomed);
         }`,
 
@@ -69,7 +74,10 @@
         },
 
         uniforms: {
-          texture: regl.texture(image),
+          texture: regl.texture({
+            data: image,
+            mag: "linear" // smooth scrolling
+          }),
           time: regl.prop("time")
         },
 

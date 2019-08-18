@@ -3,7 +3,7 @@
   import ImageStreetView from "../components/ImageStreetView.svelte";
 
   let width = 640;
-  let height = 480;
+  let height = 640;
 
   let causes = [
     {
