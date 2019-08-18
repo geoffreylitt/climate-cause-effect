@@ -74,7 +74,7 @@
         <option value={cause}>{cause.name}</option>
       {/each}
     </select>
-    <div>
+    <div style="width: 640px; height: 480px">
       <ImageStreetView
         {width}
         {height}
@@ -94,7 +94,7 @@
         <option value={effect}>{effect.name}</option>
       {/each}
     </select>
-    <div>
+    <div style="width: 640px; height: 480px;">
       <ImageAerial
         {width}
         {height}
