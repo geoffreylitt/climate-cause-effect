@@ -88,9 +88,9 @@
     <ImageStreetView
       location={cause.location}
       pano={cause.pano}
-      fov={50}
-      heading={215}
-      pitch={10} />
+      fov={cause.fov}
+      heading={cause.heading}
+      pitch={cause.pitch} />
   </div>
   <div class="right-image">
     <ImageAerial center={effect.location} zoom={10} />
