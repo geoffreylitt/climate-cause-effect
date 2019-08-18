@@ -1,6 +1,7 @@
 <script>
   import reglLib from "regl";
 
+  export let copyright;
   export let center;
   export let zoom;
   export let direction = 30;
@@ -121,7 +122,12 @@
 <div class="canvas-container" bind:clientWidth={width} bind:clientHeight={height}>
   <canvas bind:this={canvas}  
   {width} {height} />
-  <div class="copyright">© Google</div>
+  <div class="copyright">
+    © Google
+    {#if copyright}
+     / {copyright}
+    {/if}
+  </div>
 </div>
 
 <style>
@@ -138,5 +144,6 @@
     bottom: 0;
     right: 0;
     padding: 0.5rem;
+    opacity: 0.6;
   }
 </style>

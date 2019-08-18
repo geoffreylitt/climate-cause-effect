@@ -93,7 +93,7 @@
       pitch={cause.pitch} />
   </div>
   <div class="right-image">
-    <ImageAerial center={effect.location} zoom={10} />
+    <ImageAerial center={effect.location} zoom={effect.zoom} copyright={effect.copyright} />
   </div>
   <div class="left-content">
     <PanelCause data={cause} />
