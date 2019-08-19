@@ -36,18 +36,6 @@
           uniform float ratio;
           uniform sampler2D texture;
 
-          vec2 vec2_smoothstep(vec2 a, vec2 b, vec2 x) {
-              vec2 t = clamp((x - a) / (b - a), 0.0, 1.0);
-          
-              return t * t * (3.0 - (2.0 * t));
-          }
-
-          float float_smoothstep(float a, float b, float x) {
-              float t = clamp((x - a) / (b - a), 0.0, 1.0);
-          
-              return t * t * (3.0 - (2.0 * t));
-          }
-
           vec2 resize(vec2 uv) {
             float x = uv.x * min(ratio, 1.0);
             float y = uv.y / max(ratio, 1.0);
@@ -71,7 +59,7 @@
             float h10 = hash( vec2( floor( _v * _r + vec2( 1.0, 0.0 ) ) / _r ) );
             float h01 = hash( vec2( floor( _v * _r + vec2( 0.0, 1.0 ) ) / _r ) );
             float h11 = hash( vec2( floor( _v * _r + vec2( 1.0, 1.0 ) ) / _r ) );
-            vec2 ip = vec2( vec2_smoothstep( vec2( 0.0, 0.0 ), vec2( 1.0, 1.0 ), mod( _v*_r, 1. ) ) );
+            vec2 ip = vec2( smoothstep( vec2( 0.0, 0.0 ), vec2( 1.0, 1.0 ), mod( _v*_r, 1. ) ) );
             return ( h00 * ( 1. - ip.x ) + h10 * ip.x ) * ( 1. - ip.y ) + ( h01 * ( 1. - ip.x ) + h11 * ip.x ) * ip.y;
           }
 
@@ -99,7 +87,7 @@
             uvn.x = uvn.x - tcNoise * tcPhase;
 
             // switching noise
-            float snPhase = float_smoothstep( 0.03, 0.0, uvn.y );
+            float snPhase = smoothstep( 0.03, 0.0, uvn.y );
             uvn.y += snPhase * 0.3;
             uvn.x += snPhase * ( ( noise( vec2( uv.y * 100.0, time * 10.0 ) ) - 0.5 ) * 0.2 );
               
