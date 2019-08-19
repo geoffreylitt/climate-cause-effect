@@ -69,7 +69,7 @@ function sign(path, secret) {
  * @return {string} URL with API key + signature added
  */
 function generateSignature(url) {
-  if (!process.env.MAPS_API_KEY || !process.env.MAPS_API_SECRET) throw new Error('MAPS_API_SECRET or MAPS_API_SECRET not found.')
+  if (!process.env.MAPS_API_KEY || !process.env.MAPS_API_SECRET) throw new Error('MAPS_API_KEY or MAPS_API_SECRET not found.')
   let urlWithKey = url + "&key=" + process.env.MAPS_API_KEY;
   return sign(urlWithKey, process.env.MAPS_API_SECRET);
 }

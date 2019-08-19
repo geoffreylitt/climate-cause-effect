@@ -166,6 +166,7 @@
 
   function makeStreetViewUrl(location, pano, fov, heading, pitch) {
     let params = {
+      endpoint: "streetview",
       size: `640x640`,
       fov,
       heading,
@@ -182,7 +183,7 @@
       .map(key => key + "=" + params[key])
       .join("&");
 
-    return `/maps/api/streetview?${queryString}`;
+    return `/api/google-maps-proxy?${queryString}`;
   }
 
   function renderImgToCanvas(imgUrl) {

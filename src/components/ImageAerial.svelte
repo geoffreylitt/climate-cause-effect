@@ -116,6 +116,7 @@
 
   function makeMapUrl(effect) {
     let params = {
+      endpoint: "staticmap",
       size: `640x640`,
       center,
       zoom,
@@ -127,7 +128,7 @@
       .map(key => key + "=" + params[key])
       .join("&");
 
-    return `/maps/api/staticmap?${queryString}`;
+    return `/api/google-maps-proxy?${queryString}`;
   }
 
 </script>

@@ -7,3 +7,8 @@ A climate change advocacy site.
 `yarn start` to run the app locally
 
 `yarn sync` to pull latest location data from Airtable
+
+
+## Deploy
+
+`yarn deploy` to deploy to now.sh

@@ -4,14 +4,18 @@ import compression from 'compression';
 import * as sapper from '@sapper/server';
 import generateSignature from './lib/google-maps-signature';
 import 'dotenv/config'
+const querystring = require('querystring');
 
 const { PORT, NODE_ENV } = process.env;
 const dev = NODE_ENV === 'development';
 
 polka() // You can also use Express
 	// route for rewriting maps API requests to use our API key + sig
-	.get('/maps/api/*', (req, res) => {
-		let url = `https://maps.googleapis.com${req.url}`
+	.get('/api/google-maps-proxy', (req, res) => {
+		let endpoint = req.query.endpoint;
+		let queryString = querystring.encode(req.query);
+
+		let url = `https://maps.googleapis.com/maps/api/${endpoint}?${queryString}`
 
 		url = generateSignature(url);
 

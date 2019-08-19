@@ -1,7 +1,11 @@
-const generateSignature = require("../src/lib/google-maps-signature");
+const generateSignature = rquire("../src/lib/google-maps-signature");
+const querystring = require('querystring');
 
 module.exports = (req, res) => {
-  let url = `https://maps.googleapis.com${req.url}`
+  let endpoint = req.query.endpoint;
+  let queryString = querystring.encode(req.query);
+
+  let url = `https://maps.googleapis.com/maps/api/${endpoint}?${queryString}`
 
   url = generateSignature(url);
 
