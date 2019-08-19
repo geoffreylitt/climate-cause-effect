@@ -33,7 +33,7 @@
   }
 
   nav {
-    margin: -0.5rem 0.4rem 0 0.4rem;
+    margin: -0.5rem 0.5rem 0 0.4rem;
   }
 
   ul {
@@ -53,7 +53,7 @@
     color: var(--secondary);
   }
 
-  li.link:hover {
+  li.link:hover, li.link.highlighted {
     background: var(--secondary);
     color: var(--background);
   }
@@ -70,7 +70,7 @@
   .progress-bar {
     height: 0;
     border-bottom: solid 2px var(--secondary);
-    margin-bottom: 1rem;
+    margin: 0.5rem 0;
   }
 </style>
 
@@ -86,7 +86,7 @@
       <li class="link">
         <a href="/about">About</a>
       </li>
-      <li class="link">
+      <li class="link highlighted">
         <a
           class="external"
           target="_blank"
