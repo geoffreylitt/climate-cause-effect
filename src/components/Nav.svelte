@@ -1,5 +1,20 @@
 <script>
+  import { timerStore } from "../stores";
+  import { onMount } from "svelte";
   export let segment;
+  let progressPercentage = 0;
+
+  $: progressWidth = progressPercentage * 100 + "%"
+
+  onMount(() => {
+    let updateProgress = () => {
+      progressPercentage = $timerStore.getProgress();
+      requestAnimationFrame(updateProgress);
+    };
+
+    requestAnimationFrame(updateProgress);
+  });
+
 </script>
 
 <style>
@@ -52,16 +67,35 @@
 <div class="navigation">
   <nav>
     <ul>
-      <li class="link"><a href="/">Home</a></li>
-      <li class="link"><a href="/archive">Archive</a></li>
-      <li class="link"><a href="/about">About</a></li>
-      <li class="link"><a class="external" target="_blank" href="https://secure.actblue.com/donate/dec-dc-action?refcode=website-top-button&_ga=2.160425400.442605078.1564760265-581411585.1544444358">Donate</a></li>
+      <li class="link">
+        <a href="/">Home</a>
+      </li>
+      <li class="link">
+        <a href="/archive">Archive</a>
+      </li>
+      <li class="link">
+        <a href="/about">About</a>
+      </li>
+      <li class="link">
+        <a
+          class="external"
+          target="_blank"
+          href="https://secure.actblue.com/donate/dec-dc-action?refcode=website-top-button&_ga=2.160425400.442605078.1564760265-581411585.1544444358">
+          Donate
+        </a>
+      </li>
       <li>
-        <button class="{segment !== undefined ? 'disabled' : ''}" style="background: url(/arrow-left-circle.svg)"></button>
-        <button class="{segment !== undefined ? 'disabled' : ''}" style="background: url(/pause-circle.svg)"></button>
-        <button class="{segment !== undefined ? 'disabled' : ''}" style="background: url(/arrow-right-circle.svg)"></button>
+        <button
+          class={segment !== undefined ? 'disabled' : ''}
+          style="background: url(/arrow-left-circle.svg)" />
+        <button
+          class={segment !== undefined ? 'disabled' : ''}
+          style="background: url(/pause-circle.svg)" />
+        <button
+          class={segment !== undefined ? 'disabled' : ''}
+          style="background: url(/arrow-right-circle.svg)" />
       </li>
     </ul>
   </nav>
-  <div class="progress-bar" style="width: 500px"></div>
+  <div class="progress-bar" style="width: {progressWidth}" />
 </div>

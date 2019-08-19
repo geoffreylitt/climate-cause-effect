@@ -1,13 +1,11 @@
 import { writable, readable } from 'svelte/store';
-import causes from "./data/causes";
-import effects from "./data/effects";
 
 export const progress = writable(0);
 
 export const playing = writable(true);
 
-export const cause = readable(causes[0]);
-export const effect = readable(effects[0]);
+export const cause = writable(null);
+export const effect = writable(null);
 
 // export const progress = derived(playing, ($playing, set) => {
 //   if ($playing) {

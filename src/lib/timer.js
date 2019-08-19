@@ -16,13 +16,13 @@ export default function timer (callback, delay) {
     remaining -= new Date() - started
   }
 
-  this.getTimeLeft = function () {
+  this.getProgress = function () {
     if (running) {
       this.pause()
       this.start()
     }
 
-    return remaining
+    return (delay - remaining) / delay;
   }
 
   this.getStateRunning = function () {

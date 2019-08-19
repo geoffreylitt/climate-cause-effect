@@ -8,6 +8,8 @@
   import { cause, effect, timerStore } from "../stores";
   import { onMount } from "svelte";
   import timer from "../lib/timer";
+  import causes from "../data/causes";
+  import effects from "../data/effects";
 
   export let segment;
 
@@ -15,34 +17,31 @@
     return array[Math.floor(Math.random() * array.length)];
   }
 
+  $cause = causes[0];
+  $effect = effects[0];
+
   onMount(() => {
     let startNewTimer = () => {
       return new timer(() => {
+        refreshCauseAndEffect();
         $timerStore = startNewTimer();
-      }, 5000);
+      }, 10000);
     };
 
     $timerStore = startNewTimer();
-
-    let updateProgress = () => {
-      console.log($timerStore.getTimeLeft());
-      requestAnimationFrame(updateProgress);
-    };
-
-    requestAnimationFrame(updateProgress);
   });
 
   function refreshCauseAndEffect() {
-    // let newCause = cause;
-    // let new$effect = $effect;
-    // while (newCause === cause) {
-    //   newCause = getRandomFromArray(causes);
-    // }
-    // while (new$effect === $effect) {
-    //   new$effect = getRandomFromArray($effects);
-    // }
-    // cause = newCause;
-    // $effect = new$effect;
+    let newCause = $cause;
+    let newEffect = $effect;
+    while (newCause === $cause) {
+      newCause = getRandomFromArray(causes);
+    }
+    while (newEffect === $effect) {
+      newEffect = getRandomFromArray(effects);
+    }
+    $cause = newCause;
+    $effect = newEffect;
   }
 </script>
 
