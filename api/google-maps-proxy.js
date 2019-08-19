@@ -1,4 +1,4 @@
-const generateSignature = rquire("../src/lib/google-maps-signature");
+const generateSignature = require("../src/lib/google-maps-signature");
 const querystring = require('querystring');
 
 module.exports = (req, res) => {

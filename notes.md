@@ -29,7 +29,7 @@ Carbon Majors company data
 [x] about page
 [] archive page
 [] add ranking to companies
-[] deploy!
+[x] deploy!
 
 ## Cilantro
 [] fix logo line thickness
@@ -37,3 +37,4 @@ Carbon Majors company data
 [] add multiple camera angles
 [] live stock ticker?
 [] asterisks for data sources
+
