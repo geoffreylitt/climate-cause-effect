@@ -22,9 +22,10 @@ Carbon Majors company data
 ## main dish
 
 [] paragraphs of effect content
-[] offset timings
+[] ~~offset timings~~
+[] perf fix
 [] figure out controls / picker
-[] navbar 
+[x] navbar 
 [x] about page
 [] deploy!
 
