@@ -16,6 +16,15 @@ export default function timer (callback, delay) {
     remaining -= new Date() - started
   }
 
+  this.toggle = function () {
+    if (running) {
+      this.pause();
+    }
+    else {
+      this.start();
+    }
+  }
+
   this.getProgress = function () {
     if (running) {
       this.pause()
@@ -27,6 +36,18 @@ export default function timer (callback, delay) {
 
   this.getStateRunning = function () {
     return running
+  }
+
+  this.end = function () {
+    this.pause();
+    remaining = 0;
+    callback();
+  }
+
+  this.restart = function () {
+    this.pause();
+    remaining = delay;
+    this.start();
   }
 
   this.start()

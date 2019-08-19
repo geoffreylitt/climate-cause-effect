@@ -97,13 +97,16 @@
       <li>
         <button
           class={segment !== undefined ? 'disabled' : ''}
-          style="background: url(/arrow-left-circle.svg)" />
+          style="background: url(/arrow-left-circle.svg)"
+          on:click={() => {$timerStore.restart()}} />
         <button
           class={segment !== undefined ? 'disabled' : ''}
-          style="background: url(/pause-circle.svg)" />
+          style="background: url(/pause-circle.svg)"
+          on:click={() => {$timerStore.toggle()}} />
         <button
           class={segment !== undefined ? 'disabled' : ''}
-          style="background: url(/arrow-right-circle.svg)" />
+          style="background: url(/arrow-right-circle.svg)"
+          on:click={() => {$timerStore.end()}} />
       </li>
     </ul>
   </nav>

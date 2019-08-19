@@ -32,8 +32,10 @@
   });
 
   onDestroy(() => {
-    $timerStore.pause()
-    $timerStore = null
+    if ($timerStore) {
+      $timerStore.pause()
+      $timerStore = null
+    }
   })
 
   function refreshCauseAndEffect() {
