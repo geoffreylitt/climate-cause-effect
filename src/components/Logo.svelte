@@ -15,7 +15,9 @@
 
 	.bar {
 		flex-grow: 1;
+		flex-shrink: 1;
 		margin-right: -1px;
+		width: 0; /* grow up from zero space */
 	}
 
 	.logo {
@@ -33,4 +35,11 @@
 	img {
 		height: 100%;
 	}
+
+	/* mobile */
+	@media only screen and (max-width: 480px) {
+		.logo {
+			height: 3rem;
+		}
+  }
 </style>

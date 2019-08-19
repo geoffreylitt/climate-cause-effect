@@ -72,6 +72,21 @@
     border-bottom: solid 2px var(--secondary);
     margin: 0.5rem 0;
   }
+
+  /* mobile */
+  @media only screen and (max-width: 480px) {
+    .controls {
+      display: none;
+    }
+
+    ul {
+      font-size: 0.8rem;
+    }
+
+    .navigation {
+      margin-top: 0.3rem;
+    }
+  }
 </style>
 
 <div class="navigation">
@@ -94,7 +109,7 @@
           Donate
         </a>
       </li>
-      <li>
+      <li class="controls">
         <!-- back button is a pain in the ass to build for now -->
         <!-- <button
           class={segment !== undefined ? 'disabled' : ''}

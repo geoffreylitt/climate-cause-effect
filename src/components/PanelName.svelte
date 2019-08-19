@@ -9,8 +9,8 @@
 </div>
 <div class="location">
   <div class="address">{data.city || data.address}</div>
-  <img class="icon" src="/globe.svg">
   <div class="latlong">
+    <img class="icon" src="/globe.svg">
     {formatLatitude(data.lat, {degrees: true})}, {formatLongitude(data.long, {degrees: true})}
   </div>
 </div>
@@ -37,6 +37,36 @@
   }
 
   .icon {
-    padding-right: 0.5rem;
+    padding-right: 0.1rem;
+  }
+
+  @media only screen and (max-width: 768px) {
+    .location {
+      flex-wrap: wrap;
+    }
+  }
+
+  @media only screen and (max-width: 768px) and (min-width: 480px) {
+    .name {
+      font-size: 2rem;
+    }
+
+    .address {
+      font-size: 1.2rem;
+    }
+  }
+
+  @media only screen and (max-width: 480px) {
+    .name {
+      font-size: 1.5rem;
+    }
+
+    .address {
+      font-size: 1rem;
+    }
+
+    .latlong {
+      font-size: 0.5rem;
+    }
   }
 </style>

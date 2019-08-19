@@ -61,6 +61,7 @@
     grid-template-areas:
       "header"
       "main";
+    grid-template-columns: 100%;
     grid-column-gap: 0.5rem;
     padding-left: 0.5rem;
     padding-right: 0.5rem;
