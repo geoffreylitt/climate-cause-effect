@@ -24,11 +24,10 @@ Carbon Majors company data
 [] paragraphs of effect content
 [x] ~~offset timings~~
 [x] perf fix
-[] figure out controls / picker
+[x] figure out controls / picker
 [x] navbar
 [x] about page
 [] archive page
-[] add data comparisons to about page
 [] add ranking to companies
 [] deploy!
 
