@@ -1,5 +1,9 @@
 {
   "version": 2,
+  "env": {
+    "MAPS_API_KEY": "@maps_api_key",
+    "MAPS_API_SECRET": "@maps_api_secret"
+  },
   "builds": [
     {
       "src": "package.json",

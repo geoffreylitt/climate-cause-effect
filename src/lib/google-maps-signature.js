@@ -74,4 +74,4 @@ function generateSignature(url) {
   return sign(urlWithKey, process.env.MAPS_API_SECRET);
 }
 
-export { generateSignature };
+module.exports = generateSignature;
