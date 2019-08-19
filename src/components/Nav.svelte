@@ -24,9 +24,9 @@
   <hr>
   <nav>
     <ul>
-      <li>Home</li>
-      <li>Index</li>
-      <li>About</li>
+      <li><a href="/">Home</a></li>
+      <li><a href="/archive">Archive</a></li>
+      <li><a href="/about">About</a></li>
       <li>Donate</li>
     </ul>
   </nav>

@@ -1,4 +1,7 @@
 <script>
+  import Logo from "../components/Logo.svelte";
+  import Nav from "../components/Nav.svelte"
+
   export let segment;
 </script>
 
@@ -24,4 +27,34 @@
 	</style>
 </svelte:head>
 
-<slot {segment}></slot>
+<div class="container">
+  <header>
+    <Logo />
+    <Nav />
+  </header>
+  <main>
+  	<slot {segment}></slot>
+  </main>
+</div>
+
+<style>
+	header {
+    grid-area: header;
+  }
+
+  main {
+  	grid-area: main;
+  }
+
+  .container {
+    height: 100%;
+    display: grid;
+    grid-template-rows: auto minmax(0, 1fr);
+    grid-template-areas:
+      "header"
+      "main";
+    grid-column-gap: 0.5rem;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+  }
+</style>

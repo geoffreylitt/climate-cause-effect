@@ -45,10 +45,6 @@
 </script>
 
 <style>
-  header {
-    grid-area: header;
-  }
-
   .left-image,
   .right-image {
     background: #333;
@@ -66,26 +62,19 @@
   .right-content {
     grid-area: right-content;
   }
-  .container {
+  .index {
     height: 100%;
     display: grid;
     grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-    grid-template-rows: auto minmax(0, 1fr) auto;
+    grid-template-rows: minmax(0, 1fr) auto;
     grid-template-areas:
-      "header header"
       "left-image right-image"
       "left-content right-content";
-    grid-column-gap: 0.4rem;
-    padding-left: 0.4rem;
-    padding-right: 0.4rem;
+    grid-column-gap: 0.5rem;
   }
 </style>
 
-<div class="container">
-  <header>
-    <Logo />
-    <Nav />
-  </header>
+<div class="index">
   <div class="left-image">
     <ImageStreetView
       location={cause.location}

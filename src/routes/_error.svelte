@@ -6,14 +6,18 @@
 </script>
 
 <style>
+	.error {
+		display: flex;
+		justify-content: center;
+		text-align: center;
+	}
+
 	h1, p {
 		margin: 0 auto;
 	}
 
 	h1 {
-		font-size: 2.8em;
-		font-weight: 700;
-		margin: 0 0 0.5em 0;
+		font-size: 3em;
 	}
 
 	p {
@@ -31,10 +35,14 @@
 	<title>{status}</title>
 </svelte:head>
 
-<h1>{status}</h1>
+<div class="error">
+	<div>
+		<h1>{status}</h1>
 
-<p>{error.message}</p>
+		<p>{error.message}</p>
 
-{#if dev && error.stack}
-	<pre>{error.stack}</pre>
-{/if}
+		{#if dev && error.stack}
+			<pre>{error.stack}</pre>
+		{/if}
+	</div>
+</div>
