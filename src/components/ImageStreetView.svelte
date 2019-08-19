@@ -1,5 +1,6 @@
 <script>
   import reglLib from "regl";
+  import { onMount } from "svelte";
 
   export let location;
   export let pano;
@@ -37,18 +38,23 @@
     return `/maps/api/streetview?${queryString}`;
   }
 
-  function renderImgToCanvas(imgUrl) {
-    let regl = reglLib(canvas);
-    let image = new Image();
-    image.crossOrigin = "anonymous";
-    image.src = imgUrl;
+  // Here we define some variables in top-level scope
+  // so that we can access them from within renderImgToCanvas,
+  // and then we init the values in onMount.
+  // Not totally clear whether this is guaranteed to work without
+  // race conditions, but seems to work fine.
+  let regl;
+  let drawImage;
+  let imageTexture;
 
-    image.onload = function() {
-      // init regl once component has mounted
-      let drawImage = regl({
-        // VHS style shader
-        // copied from https://www.shadertoy.com/view/XtBXDt
-        frag: `
+  onMount(() => {
+    regl = reglLib(canvas);
+    imageTexture = regl.texture();
+
+    drawImage = regl({
+      // VHS style shader
+      // copied from https://www.shadertoy.com/view/XtBXDt
+      frag: `
           #define PI 3.14159265
 
           precision mediump float;
@@ -56,7 +62,6 @@
           varying vec2 vPosition;
           uniform float time;
           uniform float ratio;
-          uniform vec2 dimensions;
           uniform sampler2D texture;
 
           vec2 resize(vec2 uv) {
@@ -139,7 +144,7 @@
           }
         `,
 
-        vert: `
+      vert: `
         precision mediump float;
         attribute vec2 position;
         attribute vec2 uv;
@@ -151,24 +156,34 @@
           gl_Position = vec4(2.0 * position - 1.0, 0, 1);
         }`,
 
-        attributes: {
-          position: [[[0, 0], [1, 1], [0, 1]], [[0, 0], [1, 1], [1, 0]]],
-          uv: [
-            [[0, 0.96], [0.96, 0], [0, 0]],
-            [[0, 0.96], [0.96, 0], [0.96, 0.96]]
-          ]
-        },
+      attributes: {
+        position: [[[0, 0], [1, 1], [0, 1]], [[0, 0], [1, 1], [1, 0]]],
+        uv: [
+          [[0, 0.96], [0.96, 0], [0, 0]],
+          [[0, 0.96], [0.96, 0], [0.96, 0.96]]
+        ]
+      },
 
-        uniforms: {
-          time: regl.prop("time"),
-          ratio: regl.prop("ratio"),
-          texture: regl.texture(image),
-          dimensions: [image.width, image.height]
-        },
+      uniforms: {
+        time: regl.prop("time"),
+        ratio: regl.prop("ratio"),
+        texture: imageTexture
+      },
 
-        count: 6
-      });
+      count: 6
+    });
+  });
 
+  function renderImgToCanvas(imgUrl) {
+    let image = new Image();
+    image.crossOrigin = "anonymous";
+    image.src = imgUrl;
+
+    image.onload = function() {
+      // update the image texture to contain the new image
+      imageTexture(image);
+
+      // set up animation
       regl.frame(({ time }) => {
         // clear contents of the drawing buffer
         regl.clear({
@@ -176,7 +191,6 @@
           depth: 1
         });
 
-        // draw a triangle using the command defined above
         drawImage({
           time: time / 3.0,
           ratio: (1.0 * width) / height
@@ -185,14 +199,6 @@
     };
   }
 </script>
-
-<div
-  class="canvas-container"
-  bind:clientWidth={width}
-  bind:clientHeight={height}>
-  <canvas bind:this={canvas} {width} {height} />
-  <div class="copyright">© Google</div>
-</div>
 
 <style>
   .canvas-container {
@@ -211,3 +217,11 @@
     opacity: 0.6;
   }
 </style>
+
+<div
+  class="canvas-container"
+  bind:clientWidth={width}
+  bind:clientHeight={height}>
+  <canvas bind:this={canvas} {width} {height} />
+  <div class="copyright">© Google</div>
+</div>
