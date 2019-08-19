@@ -25,7 +25,7 @@ Carbon Majors company data
 [] offset timings
 [] figure out controls / picker
 [] navbar 
-[] about page
+[x] about page
 [] deploy!
 
 ## Cilantro
