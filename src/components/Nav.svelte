@@ -1,19 +1,25 @@
 <script>
   import { timerStore } from "../stores";
-  import { onMount } from "svelte";
+  import { onMount, onDestroy } from "svelte";
   export let segment;
   let progressPercentage = 0;
 
   $: progressWidth = progressPercentage * 100 + "%"
 
+  let tick
+
   onMount(() => {
     let updateProgress = () => {
       progressPercentage = $timerStore.getProgress();
-      requestAnimationFrame(updateProgress);
+      tick = requestAnimationFrame(updateProgress);
     };
 
-    requestAnimationFrame(updateProgress);
+    tick = requestAnimationFrame(updateProgress);
   });
+
+  onDestroy(() => {
+    if (tick) tick.cancel()
+  })
 
 </script>
 

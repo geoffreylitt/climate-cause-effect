@@ -6,7 +6,7 @@
   import PanelCause from "../components/PanelCause.svelte";
   import PanelEffect from "../components/PanelEffect.svelte";
   import { cause, effect, timerStore } from "../stores";
-  import { onMount } from "svelte";
+  import { onMount, onDestroy } from "svelte";
   import timer from "../lib/timer";
   import causes from "../data/causes";
   import effects from "../data/effects";
@@ -30,6 +30,11 @@
 
     $timerStore = startNewTimer();
   });
+
+  onDestroy(() => {
+    $timerStore.pause()
+    $timerStore = null
+  })
 
   function refreshCauseAndEffect() {
     let newCause = $cause;
