@@ -95,10 +95,11 @@
         </a>
       </li>
       <li>
-        <button
+        <!-- back button is a pain in the ass to build for now -->
+        <!-- <button
           class={segment !== undefined ? 'disabled' : ''}
           style="background: url(/arrow-left-circle.svg)"
-          on:click={() => {$timerStore.restart()}} />
+          on:click={() => {$timerStore.restart()}} /> -->
         <button
           class={segment !== undefined ? 'disabled' : ''}
           style="background: url(/pause-circle.svg)"
