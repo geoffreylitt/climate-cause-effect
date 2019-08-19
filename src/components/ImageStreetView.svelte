@@ -16,42 +16,14 @@
   $: url = makeStreetViewUrl(location, pano, fov, heading, pitch);
   $: canvas && renderImgToCanvas(url);
 
-  function makeStreetViewUrl(location, pano, fov, heading, pitch) {
-    let params = {
-      size: `640x640`,
-      fov,
-      heading,
-      pitch
-    };
-
-    if (pano !== undefined) {
-      params = { pano, ...params };
-    } else {
-      params = { location, ...params };
-    }
-
-    let queryString = Object.keys(params)
-      .map(key => key + "=" + params[key])
-      .join("&");
-
-    return `/maps/api/streetview?${queryString}`;
-  }
-
-  // Here we define some variables in top-level scope
-  // so that we can access them from within renderImgToCanvas,
-  // and then we init the values in onMount.
-  // Not totally clear whether this is guaranteed to work without
-  // race conditions, but seems to work fine.
-  let regl;
-  let drawImage;
   let imageTexture;
   let tick;
 
   onMount(() => {
-    regl = reglLib(canvas);
+    const regl = reglLib(canvas);
     imageTexture = regl.texture();
 
-    drawImage = regl({
+    const drawImage = regl({
       // VHS style shader
       // copied from https://www.shadertoy.com/view/XtBXDt
       frag: `
@@ -189,8 +161,29 @@
   });
 
   onDestroy(() => {
-    if (tick) tick.cancel()
+    if (tick) tick.cancel();
   })
+
+  function makeStreetViewUrl(location, pano, fov, heading, pitch) {
+    let params = {
+      size: `640x640`,
+      fov,
+      heading,
+      pitch
+    };
+
+    if (pano !== undefined) {
+      params = { pano, ...params };
+    } else {
+      params = { location, ...params };
+    }
+
+    let queryString = Object.keys(params)
+      .map(key => key + "=" + params[key])
+      .join("&");
+
+    return `/maps/api/streetview?${queryString}`;
+  }
 
   function renderImgToCanvas(imgUrl) {
     let image = new Image();
