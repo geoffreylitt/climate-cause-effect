@@ -24,6 +24,10 @@
 	    border: none;
 	    border-top: 2px solid var(--secondary);
 	  }
+
+	  a[target=_blank]:after {
+	  	content: '↗'
+	  }
 	</style>
 </svelte:head>
 
