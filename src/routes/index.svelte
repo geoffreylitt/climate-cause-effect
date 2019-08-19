@@ -18,28 +18,36 @@
     return array[Math.floor(Math.random() * array.length)];
   }
 
-  function refreshCauseAndEffect() {
-    let newCause = cause;
+  function refreshEffect() {
     let newEffect = effect;
-
-    while (newCause === cause) {
-      newCause = getRandomFromArray(causes);
-    }
 
     while (newEffect === effect) {
       newEffect = getRandomFromArray(effects);
     }
 
-    cause = newCause;
     effect = newEffect;
+
+    let timeUntilRefresh = 8000 + 6000 * Math.random();
+    setTimeout(refreshEffect, timeUntilRefresh)
+  }
+
+  function refreshCause() {
+    let newCause = cause;
+
+    while (newCause === cause) {
+      newCause = getRandomFromArray(causes);
+    }
+
+    cause = newCause;
+
+    // 8-14 seconds until next refresh
+    let timeUntilRefresh = 8000 + 6000 * Math.random();
+    setTimeout(refreshCause, timeUntilRefresh)
   }
 
   onMount(() => {
-    const interval = setInterval(refreshCauseAndEffect, 10000);
-
-    return () => {
-      clearInterval(interval);
-    };
+    refreshCause();
+    refreshEffect();
   });
 </script>
 
