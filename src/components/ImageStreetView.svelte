@@ -1,6 +1,6 @@
 <script>
   import reglLib from "regl";
-  import { onMount } from "svelte";
+  import { onMount, onDestroy } from "svelte";
 
   export let location;
   export let pano;
@@ -14,7 +14,6 @@
   let canvas;
 
   $: url = makeStreetViewUrl(location, pano, fov, heading, pitch);
-
   $: canvas && renderImgToCanvas(url);
 
   function makeStreetViewUrl(location, pano, fov, heading, pitch) {
@@ -46,6 +45,7 @@
   let regl;
   let drawImage;
   let imageTexture;
+  let tick;
 
   onMount(() => {
     regl = reglLib(canvas);
@@ -172,7 +172,25 @@
 
       count: 6
     });
+
+      // set up animation
+    tick = regl.frame(({ time }) => {
+      // clear contents of the drawing buffer
+      regl.clear({
+        color: [0, 0, 0, 0],
+        depth: 1
+      });
+
+      drawImage({
+        time: time / 3.0,
+        ratio: (1.0 * width) / height
+      });
+    });
   });
+
+  onDestroy(() => {
+    if (tick) tick.cancel()
+  })
 
   function renderImgToCanvas(imgUrl) {
     let image = new Image();
@@ -180,22 +198,7 @@
     image.src = imgUrl;
 
     image.onload = function() {
-      // update the image texture to contain the new image
       imageTexture(image);
-
-      // set up animation
-      regl.frame(({ time }) => {
-        // clear contents of the drawing buffer
-        regl.clear({
-          color: [0, 0, 0, 0],
-          depth: 1
-        });
-
-        drawImage({
-          time: time / 3.0,
-          ratio: (1.0 * width) / height
-        });
-      });
     };
   }
 </script>

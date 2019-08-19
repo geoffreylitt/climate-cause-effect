@@ -34,7 +34,7 @@
 <div class="container">
   <header>
     <Logo />
-    <Nav />
+    <Nav {segment} />
   </header>
   <main>
   	<slot {segment}></slot>
