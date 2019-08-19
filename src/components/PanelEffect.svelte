@@ -1,17 +1,11 @@
 <script>
-	import { formatLatitude, formatLongitude } from 'latlon-formatter';
+  import PanelName from './PanelName.svelte'
 	export let data;
 </script>
 
 <div class="panel">
 	<hr>
-	<div class="name">
-		{data.name}
-	</div>
-	<div class="location">
-		<div class="address">{data.address}</div>
-		<div class="latlong">🌎 {formatLatitude(data.lat)}, {formatLongitude(data.long)}</div>
-	</div>
+		<PanelName {data} />
 	<hr>
 </div>
 
@@ -30,11 +24,5 @@
 	.address {
 		font-size: 1.5rem;
 		padding-right: 0.5rem
-	}
-
-	hr {
-		margin: 0.5rem 0;
-		border: none;
-		border-top: 2px solid var(--secondary);
 	}
 </style>

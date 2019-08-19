@@ -1,5 +1,6 @@
 <script>
   import Logo from "../components/Logo.svelte";
+  import Nav from "../components/Nav.svelte"
   import ImageAerial from "../components/ImageAerial.svelte";
   import ImageStreetView from "../components/ImageStreetView.svelte";
   import PanelCause from "../components/PanelCause.svelte";
@@ -83,6 +84,7 @@
 <div class="container">
   <header>
     <Logo />
+    <Nav />
   </header>
   <div class="left-image">
     <ImageStreetView

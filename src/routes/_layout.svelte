@@ -15,6 +15,12 @@
 			background: var(--background); 
 			color: var(--primary);
 		}
+
+		hr {
+	    margin: 0.5rem 0;
+	    border: none;
+	    border-top: 2px solid var(--secondary);
+	  }
 	</style>
 </svelte:head>
 

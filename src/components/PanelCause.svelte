@@ -1,29 +1,9 @@
 <script>
-  import { formatLatitude, formatLongitude } from "latlon-formatter";
+  import PanelName from './PanelName.svelte'
   export let data;
 </script>
 
 <style>
-  .name {
-    font-size: 3rem;
-    line-height: 0.8;
-    padding-bottom: 1.5rem;
-  }
-
-  .name .suffix {
-    color: var(--secondary);
-  }
-
-  .location {
-    display: flex;
-    align-items: baseline;
-  }
-
-  .address {
-    font-size: 1.5rem;
-    padding-right: 0.5rem;
-  }
-
   .info {
     display: flex;
   }
@@ -44,26 +24,11 @@
     line-height: 0.8;
     padding-right: 0.5rem;
   }
-
-  hr {
-    margin: 0.5rem 0;
-    border: none;
-    border-top: 2px solid var(--secondary);
-  }
 </style>
 
 <div class="panel">
   <hr />
-  <div class="name">
-    {data.name}
-    <span class="suffix">{data.suffix || ''}</span>
-  </div>
-  <div class="location">
-    <div class="address">{data.city}</div>
-    <div class="latlong">
-      🌎 {formatLatitude(data.lat)}, {formatLongitude(data.long)}
-    </div>
-  </div>
+    <PanelName {data} />
   <hr />
   <div class="stocks">{data.stock_ticker}</div>
   <hr />
