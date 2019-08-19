@@ -90,7 +90,7 @@
         <a
           class="external"
           target="_blank"
-          href="https://secure.actblue.com/donate/dec-dc-action?refcode=website-top-button&_ga=2.160425400.442605078.1564760265-581411585.1544444358">
+          href="https://secure.actblue.com/donate/dec-dc-action">
           Donate
         </a>
       </li>

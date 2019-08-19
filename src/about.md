@@ -1,12 +1,14 @@
 # About HQ→CO2
 
-> "The public and private sectors alike must do what is necessary to stop global warming. Those who are historically responsible for polluting our atmosphere have a clear obligation to be part of the solution."
-
-—Al Gore
-
 __Private companies are largely responsible for the global warming crisis.__ 63% of all greenhouse gas emissions from 1751 to 2010 were produced by just 90 companies.
 
 HQ→CO2 is an attempt to visualize how every day, decisions made by executives in corporate headquarters are contributing to greenhouse gas emissions that pose an enormous threat to our planet.
+
+## Ways to help
+
+* [Donate](https://secure.actblue.com/donate/dec-dc-action) to the Sunrise Movement
+* [Join an action](https://www.sunrisemovement.org/climate-debate) near you
+* [Divest](https://gofossilfree.org/divestment/what-is-fossil-fuel-divestment/) from fossil fuel companies
 
 ## Authors
 

@@ -29,6 +29,8 @@
 	  	content: '↗'
 	  }
 	</style>
+
+  <title>HQ→CO2</title>
 </svelte:head>
 
 <div class="container">
