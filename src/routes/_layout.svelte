@@ -48,6 +48,8 @@
 
   main {
   	grid-area: main;
+    height: 100%;
+    overflow-y: auto;
   }
 
   .container {
