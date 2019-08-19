@@ -52,6 +52,7 @@
   	grid-area: main;
     height: 100%;
     overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
   }
 
   .container {

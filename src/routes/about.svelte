@@ -18,10 +18,6 @@
     margin: 10px 0;
   }
 
-  h1 {
-    font-size: 2rem;
-  }
-
   h2 {
     font-size: 1.3rem;
     margin-bottom: 0.5rem;
@@ -45,6 +41,15 @@
     text-decoration: underline;
   }
 
+  @media only screen and (max-width: 480px) {
+    .columns {
+      display: block;
+    }
+
+    .column {
+      margin-bottom: 2rem;
+    }
+  }
 </style>
 
 <div class="about text-content">
