@@ -22,14 +22,18 @@ Carbon Majors company data
 ## main dish
 
 [] paragraphs of effect content
-[] ~~offset timings~~
-[] perf fix
+[x] ~~offset timings~~
+[x] perf fix
 [] figure out controls / picker
-[x] navbar 
+[x] navbar
 [x] about page
+[] archive page
+[] add data comparisons to about page
+[] add ranking to companies
 [] deploy!
 
 ## Cilantro
+[] fix logo line thickness
 [] add timestamp to the surveillance footage
 [] add multiple camera angles
 [] live stock ticker?
