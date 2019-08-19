@@ -23,7 +23,7 @@
     imageTexture = regl.texture();
     const drawImage = regl({
       frag: `
-      precision mediump float;
+      precision highp float;
       uniform sampler2D texture;
       varying vec2 vUv;
       uniform float time;
