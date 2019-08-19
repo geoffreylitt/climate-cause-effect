@@ -10,7 +10,7 @@
 <div class="location">
   <div class="address">{data.city || data.address}</div>
   <div class="latlong">
-    <img class="icon" src="/globe.svg">
+    <img class="icon" src="/globe.svg" alt="Globe Icon">
     {formatLatitude(data.lat, {degrees: true})}, {formatLongitude(data.long, {degrees: true})}
   </div>
 </div>

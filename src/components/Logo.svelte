@@ -1,10 +1,10 @@
 <div class="logo">
-	<img class="logotype" src="/logo-hq.svg">
+	<img class="logotype" src="/logo-hq.svg" alt="HQ logo">
 	<div class="arrow">
-		<img class="bar" src="/logo-bar.svg">
-		<img class="end" src="/logo-end.svg">
+		<img class="bar" src="/logo-bar.svg" alt="Arrow part">
+		<img class="end" src="/logo-end.svg" alt="Arrow part">
 	</div>
-	<img class="logotype" src="/logo-co2.svg">
+	<img class="logotype" src="/logo-co2.svg" alt="CO2 logo">
 </div>
 
 <style>
