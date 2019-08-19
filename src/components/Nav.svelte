@@ -10,7 +10,11 @@
 
   onMount(() => {
     let updateProgress = () => {
-      progressPercentage = $timerStore.getProgress();
+      if ($timerStore) {
+        progressPercentage = $timerStore.getProgress();
+      } else {
+        progressPercentage = 1
+      }
       tick = requestAnimationFrame(updateProgress);
     };
 
