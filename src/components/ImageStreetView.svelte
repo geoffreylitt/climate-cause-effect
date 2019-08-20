@@ -154,7 +154,7 @@
       });
 
       drawImage({
-        time: time / 3.0,
+        time: time * 0.25, // control speed of the effect
         ratio: (1.0 * width) / height
       });
     });

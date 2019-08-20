@@ -18,6 +18,9 @@
   let imageTexture;
   let tick;
 
+  let currentAnimationTime = 0;
+  let startTimeForCurrentImage = 0;
+
   onMount(() => {
     const regl = reglLib(canvas);
     imageTexture = regl.texture();
@@ -88,9 +91,17 @@
         depth: 1
       });
 
+      // make the requestAnimationFrame timestamp
+      // available in a variable in outer scope
+      currentAnimationTime = time;
+
       // draw a triangle using the command defined above
       drawImage({
-        time: time,
+        // the time passed into REGL is the time since the
+        // current image started showing. This makes the
+        // pan effect reset for each new image,
+        // avoiding seams in the display
+        time: time - startTimeForCurrentImage,
         ratio: width / height,
         direction: direction * Math.PI / 180
       });
@@ -101,8 +112,15 @@
     if (tick) tick.cancel();
   })
 
-
   function renderImgToCanvas(imgUrl) {
+    // update the start time for current image to be the
+    // current requestAnimationFrame timestamp
+    startTimeForCurrentImage = currentAnimationTime;
+
+    // render black until the image loads,
+    // to avoid lags between parts of the UI
+    imageTexture([[0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0]]);
+
     let image = new Image();
     image.crossOrigin = "anonymous";
     image.src = imgUrl;

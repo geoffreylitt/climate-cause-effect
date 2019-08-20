@@ -1,4 +1,9 @@
 <style>
+  .text-content {
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+
   .hero {
     font-size: 3rem;
     margin-bottom: 1rem;
@@ -30,11 +35,11 @@
   .columns {
     display: grid;
     grid-auto-flow: column;
-    grid-template-columns: 2fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr;
     justify-content: space-between;
     gap: 0.5rem;
     width: 100%;
-    margin-top: 2rem;
+    margin: 2rem 0;
   }
 
   a:hover {
@@ -61,11 +66,20 @@
     90 companies.
   </p>
 
-  <p class="subheading">
-    HQ→CO<sub>2</sub>
-    visualizes how executives in corporate headquarters
-    are making decisions every day that cause staggering harm to the entire Earth.
+  <div class="subheading">
+  <p>
+      HQ→CO<sub>2</sub>
+    shows 
+    corporate headquarters of high-emissions companies
+    next to the places being affected by global warming.
   </p>
+
+  <p>
+    Executives—real people in buildings—
+    are making decisions every day that are causing staggering harm to the entire Earth.
+  </p>
+  </div>
+
   <hr />
   <div class="columns">
     <div class="column">
@@ -99,8 +113,39 @@
         </li>
       </ul>
     </div>
+    
     <div class="column">
-      <h2>Appendix</h2>
+      <h2>Colophon</h2>
+      <p>
+        HQ→CO<sub>2</sub>
+        is made by
+        <a href="https://seththompson.org/" target="_blank">
+          Seth&nbsp;Thompson
+        </a>
+        and
+        <a href="https://www.geoffreylitt.com/" target="_blank">
+          Geoffrey&nbsp;Litt
+        </a>
+        .
+      </p>
+      <p>
+        This site uses Svelte, Sapper, the Google Maps API, and WebGL.
+      </p>
+      <p>
+        The VHS video effect is based on a
+        <a href="https://www.shadertoy.com/view/XtBXDt" target="_blank">
+          shader effect by FMS_Cat on Shadertoy
+        </a>
+        .
+      </p>
+    </div>
+  </div>
+
+  <hr />
+
+  <div class="columns">
+    <div class="column">
+      <h2>Data Appendix</h2>
       <p>
         <strong>Emissions data</strong> include both firsthand emissions by companies, and
         downstream emissions caused by their products (which typically far
@@ -144,31 +189,6 @@
           Financial Times estimates
         </a>
         for some state-owned firms.
-      </p>
-    </div>
-    <div class="column">
-      <h2>Colophon</h2>
-      <p>
-        HQ→CO<sub>2</sub>
-        is made by
-        <a href="https://seththompson.org/" target="_blank">
-          Seth&nbsp;Thompson
-        </a>
-        and
-        <a href="https://www.geoffreylitt.com/" target="_blank">
-          Geoffrey&nbsp;Litt
-        </a>
-        .
-      </p>
-      <p>
-        This site uses Svelte, Sapper, the Google Maps API, and WebGL.
-      </p>
-      <p>
-        The VHS video effect is based on a
-        <a href="https://www.shadertoy.com/view/XtBXDt" target="_blank">
-          shader effect by FMS_Cat on Shadertoy
-        </a>
-        .
       </p>
     </div>
   </div>
