@@ -70,13 +70,12 @@
   <p>
       HQ→CO<sub>2</sub>
     shows 
-    corporate headquarters of high-emissions companies
+    the headquarters of high-emissions companies
     next to the places being affected by global warming.
   </p>
 
   <p>
-    Executives—real people in buildings—
-    are making decisions every day that are causing staggering harm to the entire Earth.
+    Corporate executives are making decisions every day that are causing staggering harm to people around the world.
   </p>
   </div>
 
