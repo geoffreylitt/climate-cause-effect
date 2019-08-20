@@ -104,7 +104,9 @@
       <p>
         <strong>Emissions data</strong> include both firsthand emissions by companies, and
         downstream emissions caused by their products (which typically far
-        exceed firsthand emissions for fossil fuel companies). Data comes from
+        exceed firsthand emissions for fossil fuel companies).
+      </p>
+      <p>Data is reported in metric tons of CO2 equivalent emissions, and comes from
         the
         <a
           href="https://b8f65cb373b1b7b15feb-c70d8ead6ced550b4d987d7c03fcdd1d.ssl.cf3.rackcdn.com/cms/reports/documents/000/002/327/original/Carbon-Majors-Report-2017.pdf"
@@ -159,7 +161,7 @@
         .
       </p>
       <p>
-        The site was made using Svelte, Sapper, the Google Maps API, and WebGL.
+        This site uses Svelte, Sapper, the Google Maps API, and WebGL.
       </p>
       <p>
         The VHS video effect is based on a

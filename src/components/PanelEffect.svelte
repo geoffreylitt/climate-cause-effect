@@ -16,5 +16,12 @@
 					<a href="{data.link}" target="_blank">Read more</a>
 				{/if}
 			</div>
+			<hr/> 
 		{/if}
 </div>
+
+<style>
+	.info {
+		font-size: 1.2rem;
+	}
+</style>
