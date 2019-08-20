@@ -66,5 +66,9 @@
     grid-column-gap: 0.5rem;
     padding-left: 0.5rem;
     padding-right: 0.5rem;
+
+    /* avoid getting too wide on big screens */
+    max-width: 1600px;
+    margin: 0 auto;
   }
 </style>
