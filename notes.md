@@ -28,8 +28,9 @@ Carbon Majors company data
 [x] navbar
 [x] about page
 [] archive page
-[] add ranking to companies
+[] add ranking to companies?
 [x] deploy!
+[] add google analytics
 
 ## Cilantro
 [] fix logo line thickness

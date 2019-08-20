@@ -63,9 +63,8 @@
 
   <p class="subheading">
     HQ→CO<sub>2</sub>
-    shows how decisions made by executives in
-    corporate headquarters are contributing daily to greenhouse gas emissions that
-    pose an enormous threat to our planet.
+    visualizes how executives in corporate headquarters
+    are making decisions every day that cause staggering harm to the entire Earth.
   </p>
   <hr />
   <div class="columns">
@@ -83,11 +82,11 @@
 
         <li>
           <a
-            href="https://www.sunrisemovement.org/climate-debate"
+            href="https://www.sunrisemovement.org/volunteer"
             target="_blank">
-            Join an action
+            Volunteer
           </a>
-          near you
+          locally or remotely
         </li>
 
         <li>

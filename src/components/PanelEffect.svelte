@@ -7,4 +7,14 @@
 	<hr>
 		<PanelName {data} />
 	<hr>
+		{#if data.story}
+			<div class="info">
+				{data.story}
+				{#if data.link}
+					<br />
+					<br />
+					<a href="{data.link}" target="_blank">Read more</a>
+				{/if}
+			</div>
+		{/if}
 </div>
