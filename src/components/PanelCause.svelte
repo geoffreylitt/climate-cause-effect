@@ -76,7 +76,7 @@
     </div>
     <div class="figure emissions">
       <div class="caption">
-        Yearly
+        Yearly 
         <br />
         Emissions
       </div>

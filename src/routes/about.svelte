@@ -54,26 +54,37 @@
 
 <div class="about text-content">
   <p class="hero">
-    <span class="lede">Private companies are largely responsible for the global warming crisis.</span> 63% of all greenhouse gas emissions from 1751 to 2010 were produced by just 90 companies.
+    <span class="lede">
+      Private companies are largely responsible for the global warming crisis.
+    </span>
+    63% of all greenhouse gas emissions from 1751 to 2010 were produced by just
+    90 companies.
   </p>
 
   <p class="subheading">
-    HQ→CO<sub>2</sub> is an attempt to visualize how every day, decisions made by
-    executives in corporate headquarters are contributing to greenhouse gas
-    emissions that pose an enormous threat to our planet.
+    HQ→CO<sub>2</sub>
+    shows how decisions made by executives in
+    corporate headquarters are contributing daily to greenhouse gas emissions that
+    pose an enormous threat to our planet.
   </p>
-  <hr>
+  <hr />
   <div class="columns">
     <div class="column">
       <ul class="cta">
         <h2>Ways to help</h2>
         <li>
-          <a href="https://secure.actblue.com/donate/dec-dc-action" target="_blank">Donate</a>
+          <a
+            href="https://secure.actblue.com/donate/dec-dc-action"
+            target="_blank">
+            Donate
+          </a>
           to the Sunrise Movement
         </li>
 
         <li>
-          <a href="https://www.sunrisemovement.org/climate-debate" target="_blank">
+          <a
+            href="https://www.sunrisemovement.org/climate-debate"
+            target="_blank">
             Join an action
           </a>
           near you
@@ -81,7 +92,8 @@
 
         <li>
           <a
-            href="https://gofossilfree.org/divestment/what-is-fossil-fuel-divestment/" target="_blank">
+            href="https://gofossilfree.org/divestment/what-is-fossil-fuel-divestment/"
+            target="_blank">
             Divest
           </a>
           from fossil fuel companies
@@ -91,23 +103,29 @@
     <div class="column">
       <h2>Appendix</h2>
       <p>
-        Data on company emissions comes from the
+        <strong>Emissions data</strong> include both firsthand emissions by companies, and
+        downstream emissions caused by their products (which typically far
+        exceed firsthand emissions for fossil fuel companies). Data comes from
+        the
         <a
-          href="https://b8f65cb373b1b7b15feb-c70d8ead6ced550b4d987d7c03fcdd1d.ssl.cf3.rackcdn.com/cms/reports/documents/000/002/327/original/Carbon-Majors-Report-2017.pdf" target="_blank">
+          href="https://b8f65cb373b1b7b15feb-c70d8ead6ced550b4d987d7c03fcdd1d.ssl.cf3.rackcdn.com/cms/reports/documents/000/002/327/original/Carbon-Majors-Report-2017.pdf"
+          target="_blank">
           CDP Carbon Majors Report 2017
         </a>
         .
       </p>
-
       <p>
         For more information on the Carbon Majors project, see the
-        <a href="http://climateaccountability.org/carbonmajors.html" target="_blank">
+        <a
+          href="http://climateaccountability.org/carbonmajors.html"
+          target="_blank">
           Climate Accountability Institute website
         </a>
-        or an
+        or a
         <a
-          href="https://www.theguardian.com/environment/2013/nov/20/90-companies-man-made-global-warming-emissions-climate-change" target="_blank">
-          article in the Guardian
+          href="https://www.theguardian.com/environment/2013/nov/20/90-companies-man-made-global-warming-emissions-climate-change"
+          target="_blank">
+          Guardian article
         </a>
         covering their work.
       </p>
@@ -116,18 +134,40 @@
         The creators of this website are not affiliated with the Climate
         Accountability Institute or CDP.
       </p>
+      <p>
+        <strong>Market cap data</strong> are values from Google Finance as of Aug 2019 for
+        publicly traded companies, and
+        <a
+          target="_blank"
+          href="https://www.ft.com/content/5de6ef96-8b95-11db-a61f-0000779e2340#axzz1L5EPlmlJ">
+          Financial Times estimates
+        </a>
+        for some state-owned firms.
+      </p>
     </div>
     <div class="column">
       <h2>Colophon</h2>
       <p>
-        HQ→CO<sub>2</sub> is made by
-        <a href="https://seththompson.org/" target="_blank">Seth&nbsp;Thompson</a>
+        HQ→CO<sub>2</sub>
+        is made by
+        <a href="https://seththompson.org/" target="_blank">
+          Seth&nbsp;Thompson
+        </a>
         and
-        <a href="https://www.geoffreylitt.com/" target="_blank">Geoffrey&nbsp;Litt</a>
+        <a href="https://www.geoffreylitt.com/" target="_blank">
+          Geoffrey&nbsp;Litt
+        </a>
         .
       </p>
       <p>
-        The VHS effect is based on a <a href="https://www.shadertoy.com/view/XtBXDt" target="_blank">shader effect by FMS_Cat on Shadertoy</a>.
+        The site was made using Svelte, Sapper, the Google Maps API, and WebGL.
+      </p>
+      <p>
+        The VHS video effect is based on a
+        <a href="https://www.shadertoy.com/view/XtBXDt" target="_blank">
+          shader effect by FMS_Cat on Shadertoy
+        </a>
+        .
       </p>
     </div>
   </div>
