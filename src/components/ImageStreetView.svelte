@@ -187,6 +187,10 @@
   }
 
   function renderImgToCanvas(imgUrl) {
+    // render black until the image loads,
+    // to avoid lags between parts of the UI
+    imageTexture([[0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0]]);
+
     let image = new Image();
     image.crossOrigin = "anonymous";
     image.src = imgUrl;
