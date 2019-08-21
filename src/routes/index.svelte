@@ -5,11 +5,8 @@
   import ImageStreetView from "../components/ImageStreetView.svelte";
   import PanelCause from "../components/PanelCause.svelte";
   import PanelEffect from "../components/PanelEffect.svelte";
-  import { cause, effect, timerStore } from "../stores";
+  import { slides, controls } from "../stores";
   import { onMount, onDestroy } from "svelte";
-  import timer from "../lib/timer";
-  import causes from "../data/causes";
-  import effects from "../data/effects";
 
   export let segment;
 
@@ -19,40 +16,13 @@
     return array[Math.floor(Math.random() * array.length)];
   }
 
-  $cause = causes[0];
-  $effect = effects[0];
-
   onMount(() => {
-    let startNewTimer = () => {
-      return new timer(() => {
-        refreshCauseAndEffect();
-        $timerStore = startNewTimer();
-      }, 10000);
-    };
-
-    $timerStore = startNewTimer();
+    controls.start()
   });
 
   onDestroy(() => {
-    if ($timerStore) {
-      $timerStore.pause()
-      $timerStore = null
-    }
+    controls.pause()
   })
-
-  function refreshCauseAndEffect() {
-    camNumber = Math.floor(Math.random() * 10);
-    let newCause = $cause;
-    let newEffect = $effect;
-    while (newCause === $cause) {
-      newCause = getRandomFromArray(causes);
-    }
-    while (newEffect === $effect) {
-      newEffect = getRandomFromArray(effects);
-    }
-    $cause = newCause;
-    $effect = newEffect;
-  }
 </script>
 
 <style>
@@ -81,30 +51,30 @@
     grid-template-areas:
       "left-image right-image"
       "left-content right-content";
-    grid-column-gap: 0.5rem;
+    gap: 0.5rem;
   }
 </style>
 
 <div class="index">
   <div class="left-image">
     <ImageStreetView
-      location={$cause.location}
-      pano={$cause.pano}
-      fov={$cause.fov}
-      heading={$cause.heading}
-      pitch={$cause.pitch}
+      location={$slides.cause.location}
+      pano={$slides.cause.pano}
+      fov={$slides.cause.fov}
+      heading={$slides.cause.heading}
+      pitch={$slides.cause.pitch}
       camNumber={camNumber} />
   </div>
   <div class="right-image">
     <ImageAerial
-      center={$effect.location}
-      zoom={$effect.zoom}
-      copyright={$effect.copyright} />
+      center={$slides.effect.location}
+      zoom={$slides.effect.zoom}
+      copyright={$slides.effect.copyright} />
   </div>
   <div class="left-content">
-    <PanelCause data={$cause} />
+    <PanelCause data={$slides.cause} />
   </div>
   <div class="right-content">
-    <PanelEffect data={$effect} />
+    <PanelEffect data={$slides.effect} />
   </div>
 </div>

@@ -1,20 +1,16 @@
 <script>
-  import { timerStore } from "../stores";
+  import { slides, controls } from "../stores";
   import { onMount, onDestroy } from "svelte";
   export let segment;
-  let progressPercentage = 0;
+  let progress = 0;
 
-  $: progressWidth = progressPercentage * 100 + "%"
+  $: progressWidth = progress * 100 + "%"
 
   let tick
 
   onMount(() => {
     let updateProgress = () => {
-      if ($timerStore) {
-        progressPercentage = $timerStore.getProgress();
-      } else {
-        progressPercentage = 1
-      }
+      progress = controls.getProgress();
       tick = requestAnimationFrame(updateProgress);
     };
 
@@ -24,6 +20,14 @@
   onDestroy(() => {
     if (tick) tick.cancel()
   })
+
+  function reshuffle(e) {
+    if (segment == undefined) {
+      e.preventDefault();
+      slides.reshuffle();
+      controls.restart();
+    }
+  }
 
 </script>
 
@@ -51,6 +55,13 @@
     list-style-type: none;
     padding: 0.1rem 0.5rem;
     color: var(--secondary);
+    border: solid 2px transparent;
+  }
+
+  li.link.highlighted:hover {
+    border: 2px solid var(--secondary);
+    background: none;
+    color: var(--secondary);
   }
 
   li.link:hover, li.link.highlighted {
@@ -58,9 +69,18 @@
     color: var(--background);
   }
 
+  li.link:active, li.link.highlighted:active {
+    color: var(--primary);
+  }
+
+  li.controls {
+    padding: 0;
+    display: flex;
+  }
+
   button {
-    height: 1.2rem;
-    width: 1.2rem;
+    height: 1.5rem;
+    width: 1.5rem;
   }
 
   button.disabled {
@@ -93,7 +113,7 @@
   <nav>
     <ul>
       <li class="link">
-        <a href="/">Home</a>
+        <a href="/" on:click={reshuffle}>Home</a>
       </li>
       <li class="link">
         <a href="/archive">Archive</a>
@@ -110,21 +130,20 @@
         </a>
       </li>
       <li class="controls">
-        <!-- back button is a pain in the ass to build for now -->
-        <!-- <button
-          class={segment !== undefined ? 'disabled' : ''}
+        <button
+          class={segment == undefined ? '' : 'disabled'}
           style="background: url(/arrow-left-circle.svg)"
-          on:click={() => {$timerStore.restart()}} /> -->
+          on:click={() => {controls.prev()}} />
         <button
-          class={segment !== undefined ? 'disabled' : ''}
-          style="background: url(/pause-circle.svg)"
-          on:click={() => {$timerStore.toggle()}} />
+          class={segment == undefined ? '' : 'disabled'}
+          style={$controls.playing ? "background: url(/pause-circle.svg)" : "background: url(/play-circle.svg)"}
+          on:click={() => {controls.toggle()}} />
         <button
-          class={segment !== undefined ? 'disabled' : ''}
+          class={segment == undefined ? '' : 'disabled'}
           style="background: url(/arrow-right-circle.svg)"
-          on:click={() => {$timerStore.end()}} />
+          on:click={() => {controls.next()}} />
       </li>
     </ul>
   </nav>
-  <div class="progress-bar" style="width: {progressWidth}" />
+  <div class="progress-bar" style="width: {segment == undefined ? progressWidth : '100%'}" />
 </div>
