@@ -7,6 +7,7 @@
   export let fov;
   export let heading;
   export let pitch;
+  export let camNumber;
 
   let width;
   let height;
@@ -19,12 +20,17 @@
   let imageTexture;
   let tick;
 
+  let timestampCanvas;
+  let timestampTexture;
+
   onMount(() => {
     const regl = reglLib(canvas);
     imageTexture = regl.texture({
       mag: "linear",
       min: 'linear'
     });
+
+    timestampTexture = regl.texture([[0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0]]);
 
     const drawImage = regl({
       // VHS style shader
@@ -38,15 +44,16 @@
           uniform float time;
           uniform float ratio;
           uniform sampler2D texture;
+          uniform sampler2D timestampTexture;
 
-          vec2 resize(vec2 uv) {
+          vec2 resize(vec2 uv, float ratio) {
             float x = uv.x * min(ratio, 1.0);
             float y = uv.y / max(ratio, 1.0);
             return vec2(0.5 - min(ratio, 1.0) / 2.0 + x, 0.5 - (1.0 / max(ratio, 1.0)) / 2.0 + y);
           }
 
           vec3 tex2D( sampler2D _tex, vec2 _p ){
-            vec3 col = texture2D( _tex, resize(_p) ).xyz;
+            vec3 col = texture2D( _tex, resize(_p, ratio) ).xyz;
             if ( 0.5 < abs( _p.x - 0.5 ) ) {
               col = vec3( 0.1 );
             }
@@ -95,6 +102,7 @@
             uvn.x += snPhase * ( ( noise( vec2( uv.y * 100.0, time * 10.0 ) ) - 0.5 ) * 0.2 );
               
             col = tex2D( texture, uvn );
+            col += texture2D(timestampTexture, (resize(uvn, ratio)) * 1.5 - vec2(0.02, 0.1)).rgb;
             col *= 1.0 - tcPhase;
             col = mix(
               col,
@@ -142,7 +150,8 @@
       uniforms: {
         time: regl.prop("time"),
         ratio: regl.prop("ratio"),
-        texture: imageTexture
+        texture: imageTexture,
+        timestampTexture: timestampTexture
       },
 
       count: 6
@@ -158,9 +167,28 @@
 
       drawImage({
         time: time * 0.25, // control speed of the effect
-        ratio: (1.0 * width) / height
+        ratio: (1.0 * width) / height,
+        timestampRatio: (1.0 * timestampCanvas.width) / timestampCanvas.height
       });
     });
+
+    // draw timestamp
+    let ctx = timestampCanvas.getContext("2d");
+    ctx.fillStyle = "rgba(0, 0, 0, 0.1)"
+    ctx.fillRect(0, 0, timestampCanvas.width, timestampCanvas.height);
+
+    let drawTime = () => {
+      ctx.clearRect(0, 0, timestampCanvas.width, timestampCanvas.height);
+      ctx.fillStyle = "rgba(230, 230, 230, 0.9)";
+      ctx.font = "12px Courier";
+      let now = new Date();
+      ctx.fillText(now.toLocaleDateString('en-us',{dateStyle: "medium"}), 10, 20);
+      ctx.fillText("CAM" + camNumber + " " + now.toLocaleTimeString('en-us', {hour12: false}), 10, 35);
+      timestampTexture(timestampCanvas);
+      setTimeout(drawTime, 1000);
+    }
+
+    drawTime();
   });
 
   onDestroy(() => {
@@ -228,4 +256,7 @@
   bind:clientHeight={height}>
   <canvas bind:this={canvas} {width} {height} />
   <div class="copyright">© Google</div>
+</div>
+<div>
+  <canvas class="time-canvas" bind:this={timestampCanvas} style="display: block;" height="300" width="300"/>
 </div>

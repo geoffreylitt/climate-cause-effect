@@ -13,6 +13,8 @@
 
   export let segment;
 
+  let camNumber = 1;
+
   function getRandomFromArray(array) {
     return array[Math.floor(Math.random() * array.length)];
   }
@@ -49,6 +51,8 @@
     }
     $cause = newCause;
     $effect = newEffect;
+
+    camNumber = Math.floor(Math.random());
   }
 </script>
 
@@ -89,7 +93,8 @@
       pano={$cause.pano}
       fov={$cause.fov}
       heading={$cause.heading}
-      pitch={$cause.pitch} />
+      pitch={$cause.pitch}
+      camNumber={camNumber} />
   </div>
   <div class="right-image">
     <ImageAerial
