@@ -87,6 +87,10 @@
     visibility: hidden;
   }
 
+  button:hover {
+    filter: brightness(125%);
+  }
+
   .progress-bar {
     height: 0;
     border-bottom: solid 2px var(--secondary);
@@ -95,8 +99,8 @@
 
   /* mobile */
   @media only screen and (max-width: 480px) {
-    .controls {
-      display: none;
+    li {
+      padding: 0;
     }
 
     ul {
@@ -105,6 +109,12 @@
 
     .navigation {
       margin-top: 0.3rem;
+    }
+  }
+
+  @media only screen and (max-width: 320px) {
+    li {
+      font-size: 0.7rem;
     }
   }
 </style>

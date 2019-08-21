@@ -42,7 +42,7 @@
   let populateStreetViewData = e => {
     let rawUrl = e.target.value;
     let matchData = rawUrl.match(
-      /.*\/maps\/\@([0-9\-\.]*),([0-9\-\.]*),.*,([0-9\-\.]*)h,([0-9\-\.]*)t.*/
+      /.*\/\@([0-9\-\.]*),([0-9\-\.]*),.*,([0-9\-\.]*)h,([0-9\-\.]*)t.*/
     );
     if (matchData) {
       streetViewData.lat = matchData[1];

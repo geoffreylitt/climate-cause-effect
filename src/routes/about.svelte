@@ -77,12 +77,11 @@
   <div class="subheading">
     <p>
       HQ→CO<sub>2</sub>
-      shows the headquarters of these companies next to the places
-      being affected by global warming.
+      shows the headquarters of some of these companies next to places being affected by global warming.
     </p>
 
     <p>
-      Executives in these buildings are making decisions every day that are causing
+      Executives in these buildings are making decisions causing
       staggering harm to people and environments around the Earth.
     </p>
   </div>
@@ -117,6 +116,15 @@
           </a>
           from fossil fuel companies
         </li>
+
+        <li>
+          <a
+            href="https://gofossilfree.org/divestment/what-is-fossil-fuel-divestment/"
+            target="_blank">
+            Learn more
+          </a>
+          about corporations and climate change
+        </li>
       </ul>
     </div>
 
@@ -133,6 +141,8 @@
         .
         Figures include both firsthand emissions by companies, and downstream emissions
         caused by their products.
+
+        Companies were selected based on estimated yearly emissions rankings and availability of image/financial data.
       </p>
       <p>
         For more information on the Carbon Majors project, see the
@@ -165,6 +175,9 @@
       </p>
       <p>
         <strong>Image data</strong> comes from Google Maps and Google Street View. Detailed copyright info is noted on each image.
+      </p>
+      <p>
+        Pairings of companies and places are randomized. The effects of climate change are global.
       </p>
     </div>
   </div>
