@@ -56,6 +56,14 @@
   }
 
   @media only screen and (max-width: 480px) {
+    .hero {
+      font-size: 1.8rem;
+    }
+
+    .subheading {
+      font-size: 1.3rem;
+    }
+
     .columns {
       display: block;
     }
@@ -119,7 +127,7 @@
 
         <li>
           <a
-            href="https://gofossilfree.org/divestment/what-is-fossil-fuel-divestment/"
+            href="https://b8f65cb373b1b7b15feb-c70d8ead6ced550b4d987d7c03fcdd1d.ssl.cf3.rackcdn.com/cms/reports/documents/000/002/327/original/Carbon-Majors-Report-2017.pdf"
             target="_blank">
             Learn more
           </a>
