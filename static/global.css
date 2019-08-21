@@ -23,3 +23,6 @@ a {
 	text-decoration: inherit;
 }
 
+.js-focus-visible :focus:not(.focus-visible) {
+  outline: none;
+}

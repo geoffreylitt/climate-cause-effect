@@ -27,8 +27,8 @@ class CauseEffectSlides {
 
   // called after load, true shuffle is fine
   reshuffle() {
-    this.causes = this.pureShuffle(causes)
-    this.effects = this.pureShuffle(effects)
+    this.causes = this.pureShuffle(this.causes)
+    this.effects = this.pureShuffle(this.effects)
     this.index = 0
     this._set({cause: this.causes[this.index], effect: this.effects[this.index], index: this.index})
   }
