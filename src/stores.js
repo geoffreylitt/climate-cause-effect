@@ -11,7 +11,7 @@ class CauseEffectSlides {
     this.index = 0
     // instances of this class are a readable store
     // which internally write to a writeable store
-    const { subscribe, set, update } = writable({cause: this.causes[this.index], effect: this.effects[this.index]});
+    const { subscribe, set, update } = writable({cause: this.causes[this.index], effect: this.effects[this.index], index: this.index});
     this.subscribe = subscribe
     this._set = set
     this._update = update
@@ -30,17 +30,17 @@ class CauseEffectSlides {
     this.causes = this.pureShuffle(causes)
     this.effects = this.pureShuffle(effects)
     this.index = 0
-    this._set({cause: this.causes[this.index], effect: this.effects[this.index]})
+    this._set({cause: this.causes[this.index], effect: this.effects[this.index], index: this.index})
   }
 
   next() {
     this.index = this.mod(this.index + 1, this.length)
-    this._set({cause: this.causes[this.index], effect: this.effects[this.index]})
+    this._set({cause: this.causes[this.index], effect: this.effects[this.index], index: this.index})
   }
 
   prev() {
     this.index = this.mod(this.index - 1, this.length)
-    this._set({cause: this.causes[this.index], effect: this.effects[this.index]})
+    this._set({cause: this.causes[this.index], effect: this.effects[this.index], index: this.index})
   }
 
   mod(n, m) {

@@ -10,8 +10,6 @@
 
   export let segment;
 
-  let camNumber = 1;
-
   function getRandomFromArray(array) {
     return array[Math.floor(Math.random() * array.length)];
   }
@@ -63,7 +61,7 @@
       fov={$slides.cause.fov}
       heading={$slides.cause.heading}
       pitch={$slides.cause.pitch}
-      camNumber={camNumber} />
+      camNumber={$slides.index + 1} />
   </div>
   <div class="right-image">
     <ImageAerial
