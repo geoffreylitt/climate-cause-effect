@@ -69,22 +69,21 @@
 <div class="about text-content">
   <p class="hero">
     <span class="lede">
-      Private companies are largely responsible for the global warming crisis.
+      Corporations are largely responsible for the global warming crisis.
     </span>
-    63% of all greenhouse gas emissions from 1751 to 2010 were produced by just
-    90 companies.
+    63% of all greenhouse gas emissions from 1751 to 2010 were produced by the activities and products of just 90 companies.
   </p>
 
   <div class="subheading">
     <p>
       HQ→CO<sub>2</sub>
-      shows the headquarters of high-emissions companies next to the places
+      shows the headquarters of these companies next to the places
       being affected by global warming.
     </p>
 
     <p>
-      Corporate executives are making decisions every day that are causing
-      staggering harm to people around the world.
+      Executives in these buildings are making decisions every day that are causing
+      staggering harm to people and environments around the Earth.
     </p>
   </div>
 
