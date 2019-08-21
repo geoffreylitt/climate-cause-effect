@@ -50,6 +50,11 @@
     text-decoration: underline;
   }
 
+  a:active {
+    color: var(--secondary);
+    text-decoration: inherit;
+  }
+
   @media only screen and (max-width: 480px) {
     .columns {
       display: block;

@@ -1,6 +1,7 @@
 <script>
   import reglLib from "regl";
   import { onMount, onDestroy } from "svelte";
+  import { makeAerialMapUrl } from '../lib/google-maps-urls'
 
   export let copyright;
   export let center;
@@ -12,7 +13,7 @@
 
   let canvas;
 
-  $: url = makeMapUrl(center, zoom);
+  $: url = makeAerialMapUrl(center, zoom);
   $: canvas && renderImgToCanvas(url);
 
   let imageTexture;
@@ -131,23 +132,6 @@
         min: 'linear' // smooth scrolling
       });
     };
-  }
-
-  function makeMapUrl(effect) {
-    let params = {
-      endpoint: "staticmap",
-      size: `640x640`,
-      center,
-      zoom,
-      maptype: "satellite",
-      scale: 2
-    };
-
-    let queryString = Object.keys(params)
-      .map(key => key + "=" + params[key])
-      .join("&");
-
-    return `/api/google-maps-proxy?${queryString}`;
   }
 
 </script>

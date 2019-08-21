@@ -1,6 +1,7 @@
 <script>
   import reglLib from "regl";
   import { onMount, onDestroy } from "svelte";
+  import { makeStreetViewUrl } from '../lib/google-maps-urls'
 
   export let location;
   export let pano;
@@ -204,28 +205,6 @@
   onDestroy(() => {
     if (tick) tick.cancel();
   })
-
-  function makeStreetViewUrl(location, pano, fov, heading, pitch) {
-    let params = {
-      endpoint: "streetview",
-      size: `640x640`,
-      fov,
-      heading,
-      pitch
-    };
-
-    if (pano !== undefined) {
-      params = { pano, ...params };
-    } else {
-      params = { location, ...params };
-    }
-
-    let queryString = Object.keys(params)
-      .map(key => key + "=" + params[key])
-      .join("&");
-
-    return `/api/google-maps-proxy?${queryString}`;
-  }
 
   function renderImgToCanvas(imgUrl) {
     // render black until the image loads,

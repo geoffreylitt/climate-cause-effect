@@ -2,6 +2,7 @@ import causes from "./data/causes";
 import effects from "./data/effects";
 import { writable, readable } from 'svelte/store';
 import libTimer from './lib/timer'
+import * as sapper from '@sapper/app';
 
 class CauseEffectSlides {
   constructor(causes, effects) {
@@ -40,6 +41,17 @@ class CauseEffectSlides {
 
   prev() {
     this.index = this.mod(this.index - 1, this.length)
+    this._set({cause: this.causes[this.index], effect: this.effects[this.index], index: this.index})
+  }
+
+  gotoEffect(name) {
+    let i = this.effects.findIndex((effect) => (effect.name == name))
+    this.index = this.mod(this.effects.findIndex((effect) => (effect.name == name)), this.length)
+    this._set({cause: this.causes[this.index], effect: this.effects[this.index], index: this.index})
+  }
+
+  gotoCause(name) {
+    this.index = this.mod(this.causes.findIndex((cause) => (cause.name == name)), this.length)
     this._set({cause: this.causes[this.index], effect: this.effects[this.index], index: this.index})
   }
 
@@ -111,7 +123,20 @@ function createControls() {
       timer.restart();
       slides.prev();
       set({ playing: timer.getStateRunning() });
+    },
+    gotoEffect: (name) => {
+      timer.restart();
+      slides.gotoEffect(name);
+      sapper.goto('/');
+      set({ playing: timer.getStateRunning() })
+    },
+    gotoCause: (name) => {
+      timer.restart();
+      slides.gotoCause(name);
+      sapper.goto('/');
+      set({ playing: timer.getStateRunning() })
     }
+
   };
 }
 
