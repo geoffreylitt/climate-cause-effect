@@ -127,7 +127,8 @@
     image.onload = function() {
       imageTexture({
         data: image,
-        mag: "linear" // smooth scrolling
+        mag: "linear",
+        min: 'linear' // smooth scrolling
       });
     };
   }

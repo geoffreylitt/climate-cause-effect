@@ -21,7 +21,10 @@
 
   onMount(() => {
     const regl = reglLib(canvas);
-    imageTexture = regl.texture();
+    imageTexture = regl.texture({
+      mag: "linear",
+      min: 'linear'
+    });
 
     const drawImage = regl({
       // VHS style shader
