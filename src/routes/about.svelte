@@ -164,6 +164,9 @@
         </a>
         for some state-owned firms.
       </p>
+      <p>
+        <strong>Image data</strong> comes from Google Maps and Google Street View. Detailed copyright info is noted on each image.
+      </p>
     </div>
   </div>
 
@@ -181,6 +184,9 @@
       </a>
       .
       The site uses Svelte, Sapper, the Google Maps API, and WebGL.
+    </p>
+    <p>
+      Let us know what you think! (s3th.thompson, gklitt) at gmail.
     </p>
     <p>
       The VHS video effect is based on a

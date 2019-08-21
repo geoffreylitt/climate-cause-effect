@@ -51,11 +51,11 @@
     </div>
     <div class="param">
       Lat:
-      <input type="number" step="0.1" bind:value={aerialData.lat} />
+      <input type="number" step="0.01" bind:value={aerialData.lat} />
     </div>
     <div class="param">
       Long:
-      <input type="number" step="0.1" bind:value={aerialData.long} />
+      <input type="number" step="0.01" bind:value={aerialData.long} />
     </div>
   </div>
   <div class="preview" style="height: 640px; width: 640px;">
