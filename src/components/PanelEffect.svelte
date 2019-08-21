@@ -24,4 +24,10 @@
 	.info {
 		font-size: 1.2rem;
 	}
+
+	@media only screen and (max-width: 480px) {
+    .info {
+			font-size: 0.8rem;
+		}
+  }
 </style>
