@@ -41,6 +41,7 @@
   })
 
   function refreshCauseAndEffect() {
+    camNumber = Math.floor(Math.random() * 10);
     let newCause = $cause;
     let newEffect = $effect;
     while (newCause === $cause) {
@@ -51,8 +52,6 @@
     }
     $cause = newCause;
     $effect = newEffect;
-
-    camNumber = Math.floor(Math.random());
   }
 </script>
 
