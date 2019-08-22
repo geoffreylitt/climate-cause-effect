@@ -4,20 +4,21 @@
 
 ## main dish
 
-[] paragraphs of effect content
+[x] paragraphs of effect content
 [x] ~~offset timings~~
 [x] perf fix
 [x] figure out controls / picker
 [x] navbar
 [x] about page
-[] archive page
-[] add ranking to companies?
+[x] archive page
+[x] add ranking to companies?
 [x] deploy!
 [] add google analytics
+[] add meta tags
 
 ## Cilantro
 [] fix logo line thickness
-[] add timestamp to the surveillance footage
+[x] add timestamp to the surveillance footage
 [] add multiple camera angles
 [] live stock ticker?
 [] asterisks for data sources

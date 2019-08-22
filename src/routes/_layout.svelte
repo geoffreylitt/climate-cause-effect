@@ -31,6 +31,16 @@
 	</style>
 
   <title>HQ→CO2</title>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-38867184-2"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-38867184-2');
+  </script>
 </svelte:head>
 
 <div class="container">
