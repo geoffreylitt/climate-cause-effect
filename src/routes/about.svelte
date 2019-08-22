@@ -16,7 +16,7 @@
 
   .subheading {
     font-size: 2rem;
-    margin-bottom: 3rem;
+    margin-bottom: 2rem;
   }
 
   p {
@@ -85,12 +85,7 @@
   <div class="subheading">
     <p>
       HQ→CO<sub>2</sub>
-      shows the headquarters of some of these companies next to places being affected by global warming.
-    </p>
-
-    <p>
-      Executives in these buildings are making decisions causing
-      staggering harm to people and environments around the Earth.
+      juxtaposes random pairs of images: the headquarters of high-emissions fossil fuel companies, and places around the world being affected by global warming.
     </p>
   </div>
 
@@ -113,7 +108,7 @@
           <a href="https://www.sunrisemovement.org/volunteer" target="_blank">
             Volunteer
           </a>
-          locally or remotely
+          to help
         </li>
 
         <li>
@@ -127,7 +122,7 @@
 
         <li>
           <a
-            href="https://b8f65cb373b1b7b15feb-c70d8ead6ced550b4d987d7c03fcdd1d.ssl.cf3.rackcdn.com/cms/reports/documents/000/002/327/original/Carbon-Majors-Report-2017.pdf"
+            href="https://www.theguardian.com/environment/2013/nov/20/90-companies-man-made-global-warming-emissions-climate-change"
             target="_blank">
             Learn more
           </a>
@@ -150,7 +145,7 @@
         Figures include both firsthand emissions by companies, and downstream emissions
         caused by their products.
 
-        Companies were selected based on estimated yearly emissions rankings and availability of image/financial data.
+        Companies were selected for this site based on estimated yearly emissions rankings and availability of image/financial data.
       </p>
       <p>
         For more information on the Carbon Majors project, see the
@@ -158,14 +153,7 @@
           href="http://climateaccountability.org/carbonmajors.html"
           target="_blank">
           Climate Accountability Institute website
-        </a>
-        or a
-        <a
-          href="https://www.theguardian.com/environment/2013/nov/20/90-companies-man-made-global-warming-emissions-climate-change"
-          target="_blank">
-          Guardian article
-        </a>
-        covering their work.
+        </a>.
         
         The creators of this website are not affiliated with the Climate
         Accountability Institute or CDP.
