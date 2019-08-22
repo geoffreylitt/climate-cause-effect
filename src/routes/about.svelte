@@ -97,7 +97,7 @@
         <h2>Ways to help</h2>
         <li>
           <a
-            href="https://secure.actblue.com/donate/dec-dc-action"
+            href="/api/donate"
             target="_blank">
             Donate
           </a>
@@ -191,7 +191,7 @@
         Geoffrey&nbsp;Litt
       </a>
       .
-      The site uses Svelte, Sapper, the Google Maps API, and WebGL.
+      The site is built with <a href="https://svelte.dev/" target="_blank">Svelte</a>, <a href="https://sapper.svelte.dev/" target="_blank">Sapper</a>, and <a href="https://github.com/regl-project/regl" target="_blank">Regl</a>.
     </p>
     <p>
       Let us know what you think! (s3th.thompson, gklitt) at gmail.

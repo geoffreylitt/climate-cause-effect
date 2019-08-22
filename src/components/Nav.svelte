@@ -135,7 +135,7 @@
         <a
           class="external"
           target="_blank"
-          href="https://secure.actblue.com/donate/dec-dc-action">
+          href="/api/donate">
           Donate
         </a>
       </li>

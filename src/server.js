@@ -9,9 +9,11 @@ const querystring = require('querystring');
 const { PORT, NODE_ENV } = process.env;
 const dev = NODE_ENV === 'development';
 
-polka() // You can also use Express
+const app = polka() // You can also use Express
+
+if (dev) {
 	// route for rewriting maps API requests to use our API key + sig
-	.get('/api/google-maps-proxy', (req, res) => {
+	app.get('/api/google-maps-proxy', (req, res) => {
 		let endpoint = req.query.endpoint;
 		let queryString = querystring.encode(req.query);
 
@@ -26,14 +28,29 @@ polka() // You can also use Express
 
 		res.end(str);
 	})
-	.use(
-		compression({ threshold: 0 }),
-		sirv('static', { dev }),
-		sapper.middleware()
-	)
-	.listen(PORT, err => {
-		if (err) console.log('error', err);
-	});
+
+	app.get('/api/donate', (req, res) => {
+		const url = `https://secure.actblue.com/donate/dec-dc-action`
+
+	  let str = "redirecting..."
+	  res.writeHead(302, {
+	    Location: url
+	  });
+
+	  res.end(str);
+	})
+
+}
+
+app.use(
+	compression({ threshold: 0 }),
+	sirv('static', { dev }),
+	sapper.middleware()
+)
+
+app.listen(PORT, err => {
+	if (err) console.log('error', err);
+});
 
 
 
