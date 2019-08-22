@@ -31,6 +31,16 @@
 	</style>
 
   <title>HQ→CO2</title>
+  
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="HQ→CO2: Corporate Cause, Climate Effect">
+  <meta name="twitter:description" content="HQ→CO2 juxtaposes images of fossil fuel headquarters with places being affected by global warming.">
+  <meta name="twitter:image" content="https://hqco2.org/hqco2-cover.jpg">
+
+  <meta property="og:url"                content="https://hqco2.org" />
+  <meta property="og:title"              content="HQ→CO2: Corporate Cause, Climate Effect" />
+  <meta property="og:description"        content="HQ→CO2 juxtaposes images of fossil fuel headquarters with places being affected by global warming." />
+  <meta property="og:image"              content="https://hqco2.org/hqco2-cover.jpg" />
 
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-38867184-2"></script>
