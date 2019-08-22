@@ -87,6 +87,9 @@
       HQ→CO<sub>2</sub>
       juxtaposes random pairs of images: the headquarters of high-emissions fossil fuel companies, and places around the world being affected by global warming.
     </p>
+    <p>
+      It aims to concretely visualize how corporate executives bear enormous responsibility for the past and future of the climate crisis. 
+    </p>
   </div>
 
   <hr />
