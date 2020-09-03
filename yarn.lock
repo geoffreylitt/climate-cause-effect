@@ -1037,6 +1037,11 @@ fast-json-stable-stringify@^2.0.0:
   resolved "https://registry.yarnpkg.com/fast-json-stable-stringify/-/fast-json-stable-stringify-2.0.0.tgz#d5142c0caee6b1189f87d3a76111064f86c8bbf2"
   integrity sha1-1RQsDK7msRifh9OnYREGT4bIu/I=
 
+focus-visible@^5.0.2:
+  version "5.1.0"
+  resolved "https://registry.yarnpkg.com/focus-visible/-/focus-visible-5.1.0.tgz#4b9d40143b865f53eafbd93ca66672b3bf9e7b6a"
+  integrity sha512-nPer0rjtzdZ7csVIu233P2cUm/ks/4aVSI+5KUkYrYpgA7ujgC3p6J7FtFU+AIMWwnwYQOB/yeiOITxFeYIXiw==
+
 for-each@^0.3.3:
   version "0.3.3"
   resolved "https://registry.yarnpkg.com/for-each/-/for-each-0.3.3.tgz#69b447e88a0a5d32c3e7084f3f1710034b21376e"
@@ -1788,10 +1793,10 @@ safer-buffer@^2.0.2, safer-buffer@^2.1.0, safer-buffer@~2.1.0:
   resolved "https://registry.yarnpkg.com/safer-buffer/-/safer-buffer-2.1.2.tgz#44fa161b0187b9549dd84bb91802f9bd8385cd6a"
   integrity sha512-YZo3K82SD7Riyi0E1EQPojLz7kpepnSQI9IyPbHHg1XXXevb5dJI7tpyN2ADxGcQbHG7vcyRHk0cbwqcQriUtg==
 
-sapper@^0.27.0:
-  version "0.27.8"
-  resolved "https://registry.yarnpkg.com/sapper/-/sapper-0.27.8.tgz#dd41cd359373b816fbb519cffd1b941e4f4cd459"
-  integrity sha512-78K+56yu9nGOEU0B0XjBvNchRuPEv4aHbAKK4D874S4aoapMAkHCT0bHtPK12S3P7JPxvvT8GzHaq/8NetMmbg==
+sapper@^0.27.11:
+  version "0.27.11"
+  resolved "https://registry.yarnpkg.com/sapper/-/sapper-0.27.11.tgz#46877abe8a386bee62b9decfe9932fe37f5464f7"
+  integrity sha512-5EaPZhlc8OnyN3UCI6dRSM1Gz5sxyzLZG/1z5nMvZhg9Ng+rSvEvJx/rW/tSHcnQPa8or7+YcbfvQHKS5oPHiw==
   dependencies:
     html-minifier "^4.0.0"
     http-link-header "^1.0.2"
